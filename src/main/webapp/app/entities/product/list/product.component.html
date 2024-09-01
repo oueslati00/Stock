@@ -109,6 +109,27 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
+            <th scope="col" jhiSortBy="shouldBeNotification">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.product.shouldBeNotification">Should Be Notification</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="notificationDeleted">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.product.notificationDeleted">Notification Deleted</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="minQT">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.product.minQT">Min QT</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -134,8 +155,26 @@
               </td>
               <td>{{ product.imageUrl }}</td>
               <td>{{ product.qT }}</td>
+              <td>{{ product.shouldBeNotification }}</td>
+              <td>{{ product.notificationDeleted }}</td>
+              <td>{{ product.minQT }}</td>
               <td class="text-end">
                 <div class="btn-group">
+                  <button
+                    type="submit"
+                    [routerLink]="['/demand']"
+                    [queryParams]="{ 'filter[nameId.in]': product.id }"
+                    class="btn btn-info btn-sm"
+                    data-cy="filterOtherEntityButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span
+                      class="d-none d-md-inline"
+                      jhiTranslate="entity.action.show"
+                      [translateValues]="{ otherEntity: ('stockProjectApp.product.demand' | translate) }"
+                      >Show Demand</span
+                    >
+                  </button>
                   <a [routerLink]="['/product', product.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
                     <fa-icon icon="eye"></fa-icon>
                     <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>

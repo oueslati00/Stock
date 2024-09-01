@@ -1,6 +1,7 @@
 package com.mycompany.myapp.service.dto;
 
 import com.mycompany.myapp.domain.enumeration.Status;
+import jakarta.validation.constraints.*;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
@@ -23,6 +24,7 @@ public class DemandDTO implements Serializable {
 
     private Boolean validate;
 
+    @NotNull
     private ProductDTO name;
 
     public Long getId() {

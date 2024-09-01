@@ -117,6 +117,16 @@ class DemandResourceIT {
             .demandDate(DEFAULT_DEMAND_DATE)
             .status(DEFAULT_STATUS)
             .validate(DEFAULT_VALIDATE);
+        // Add required entity
+        Product product;
+        if (TestUtil.findAll(em, Product.class).isEmpty()) {
+            product = ProductResourceIT.createEntity(em);
+            em.persist(product);
+            em.flush();
+        } else {
+            product = TestUtil.findAll(em, Product.class).get(0);
+        }
+        demand.setName(product);
         return demand;
     }
 
@@ -133,6 +143,16 @@ class DemandResourceIT {
             .demandDate(UPDATED_DEMAND_DATE)
             .status(UPDATED_STATUS)
             .validate(UPDATED_VALIDATE);
+        // Add required entity
+        Product product;
+        if (TestUtil.findAll(em, Product.class).isEmpty()) {
+            product = ProductResourceIT.createUpdatedEntity(em);
+            em.persist(product);
+            em.flush();
+        } else {
+            product = TestUtil.findAll(em, Product.class).get(0);
+        }
+        demand.setName(product);
         return demand;
     }
 

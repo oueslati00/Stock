@@ -79,6 +79,10 @@ class ProductCriteriaTest {
         productCriteria.name();
         productCriteria.imageUrl();
         productCriteria.qT();
+        productCriteria.shouldBeNotification();
+        productCriteria.notificationDeleted();
+        productCriteria.minQT();
+        productCriteria.demandId();
         productCriteria.distinct();
     }
 
@@ -90,6 +94,10 @@ class ProductCriteriaTest {
                 condition.apply(criteria.getName()) &&
                 condition.apply(criteria.getImageUrl()) &&
                 condition.apply(criteria.getqT()) &&
+                condition.apply(criteria.getShouldBeNotification()) &&
+                condition.apply(criteria.getNotificationDeleted()) &&
+                condition.apply(criteria.getMinQT()) &&
+                condition.apply(criteria.getDemandId()) &&
                 condition.apply(criteria.getDistinct()),
             "every filter matches"
         );
@@ -103,6 +111,10 @@ class ProductCriteriaTest {
                 condition.apply(criteria.getName(), copy.getName()) &&
                 condition.apply(criteria.getImageUrl(), copy.getImageUrl()) &&
                 condition.apply(criteria.getqT(), copy.getqT()) &&
+                condition.apply(criteria.getShouldBeNotification(), copy.getShouldBeNotification()) &&
+                condition.apply(criteria.getNotificationDeleted(), copy.getNotificationDeleted()) &&
+                condition.apply(criteria.getMinQT(), copy.getMinQT()) &&
+                condition.apply(criteria.getDemandId(), copy.getDemandId()) &&
                 condition.apply(criteria.getDistinct(), copy.getDistinct()),
             "every filter matches"
         );

@@ -1,11 +1,11 @@
-id;qr_code;name;image_data;image_data_content_type;image_url;q_t
-1;à travers à l'encontre de;camarade;../fake-data/blob/hipster.png;image/png;sauf population du Québec autrement;12731
-2;vraiment;énorme actionnaire;../fake-data/blob/hipster.png;image/png;rencontrer avant-hier;28000
-3;pendant;chef;../fake-data/blob/hipster.png;image/png;juriste snob ouch;29318
-4;intéresser fidèle sus;contraindre par rapport à;../fake-data/blob/hipster.png;image/png;commissionnaire affirmer pff;8354
-5;précisément volontiers;rassembler;../fake-data/blob/hipster.png;image/png;présidence de la part de;2005
-6;derrière boum;bientôt d’autant que tranquille;../fake-data/blob/hipster.png;image/png;à condition que rédaction;897
-7;plouf près;même si;../fake-data/blob/hipster.png;image/png;servir abolir de manière à ce que;2801
-8;distinguer à condition que assurément;outre;../fake-data/blob/hipster.png;image/png;dans la mesure où pauvre renforcer;12819
-9;au point que ouah apte;âcre;../fake-data/blob/hipster.png;image/png;que tant;16475
-10;à bas de à raison de si;plouf lorsque;../fake-data/blob/hipster.png;image/png;pour;6081
+id;qr_code;name;image_data;image_data_content_type;image_url;q_t;should_be_notification;notification_deleted;min_qt
+1;à travers à l'encontre de;camarade;../fake-data/blob/hipster.png;image/png;sauf population du Québec autrement;12731;false;false;22357
+2;taire un peu à l'instar de;devant areu areu pendant;../fake-data/blob/hipster.png;image/png;chef;29374;false;false;7880
+3;insipide tellement;tendre claquer jusqu’à ce que;../fake-data/blob/hipster.png;image/png;devant recourir même;22736;false;false;6761
+4;affirmer;cocorico;../fake-data/blob/hipster.png;image/png;précisément volontiers;570;false;false;9637
+5;novice adepte désormais;vouh;../fake-data/blob/hipster.png;image/png;rôder;27112;false;false;11522
+6;d’autant que tranquille;à condition que rédaction;../fake-data/blob/hipster.png;image/png;derrière;24343;false;false;14159
+7;tromper oh sus;d’autant que du moment que;../fake-data/blob/hipster.png;image/png;patientèle rentrer entre-temps;24624;false;false;17018
+8;habile groin groin snob;caresser pénétrer;../fake-data/blob/hipster.png;image/png;touchant équipe de recherche;31984;false;false;18926
+9;assez pourvu que chef;à raison de si;../fake-data/blob/hipster.png;image/png;plouf lorsque;6924;false;false;30188
+10;chut;toujours durant;../fake-data/blob/hipster.png;image/png;à condition que vu que sage;29280;false;false;2528

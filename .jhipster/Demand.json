@@ -33,11 +33,16 @@
   "pagination": "pagination",
   "relationships": [
     {
+      "options": {
+        "onUpdate": "CASCADE"
+      },
       "otherEntityField": "name",
       "otherEntityName": "product",
+      "otherEntityRelationshipName": "demand",
       "relationshipName": "name",
       "relationshipSide": "left",
-      "relationshipType": "many-to-one"
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
     }
   ],
   "service": "serviceImpl"

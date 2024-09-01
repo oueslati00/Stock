@@ -49,10 +49,10 @@ describe('Demand Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call Product query and add missing value', () => {
       const demand: IDemand = { id: 456 };
-      const name: IProduct = { id: 10526 };
+      const name: IProduct = { id: 18524 };
       demand.name = name;
 
-      const productCollection: IProduct[] = [{ id: 2726 }];
+      const productCollection: IProduct[] = [{ id: 22144 }];
       jest.spyOn(productService, 'query').mockReturnValue(of(new HttpResponse({ body: productCollection })));
       const additionalProducts = [name];
       const expectedCollection: IProduct[] = [...additionalProducts, ...productCollection];
@@ -71,7 +71,7 @@ describe('Demand Management Update Component', () => {
 
     it('Should update editForm', () => {
       const demand: IDemand = { id: 456 };
-      const name: IProduct = { id: 20320 };
+      const name: IProduct = { id: 19723 };
       demand.name = name;
 
       activatedRoute.data = of({ demand });

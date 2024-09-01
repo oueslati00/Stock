@@ -27,11 +27,34 @@
     {
       "fieldName": "qT",
       "fieldType": "Integer"
+    },
+    {
+      "fieldName": "shouldBeNotification",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "notificationDeleted",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "minQT",
+      "fieldType": "Integer"
     }
   ],
   "jpaMetamodelFiltering": true,
   "name": "Product",
   "pagination": "pagination",
-  "relationships": [],
+  "relationships": [
+    {
+      "options": {
+        "onUpdate": "CASCADE"
+      },
+      "otherEntityName": "demand",
+      "otherEntityRelationshipName": "name",
+      "relationshipName": "demand",
+      "relationshipSide": "right",
+      "relationshipType": "one-to-many"
+    }
+  ],
   "service": "serviceImpl"
 }

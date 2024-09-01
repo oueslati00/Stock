@@ -14,7 +14,7 @@ type PartialWithRequiredKeyOf<T extends { id: unknown }> = Partial<Omit<T, 'id'>
  */
 type ProductFormGroupInput = IProduct | PartialWithRequiredKeyOf<NewProduct>;
 
-type ProductFormDefaults = Pick<NewProduct, 'id'>;
+type ProductFormDefaults = Pick<NewProduct, 'id' | 'shouldBeNotification' | 'notificationDeleted'>;
 
 type ProductFormGroupContent = {
   id: FormControl<IProduct['id'] | NewProduct['id']>;
@@ -24,6 +24,9 @@ type ProductFormGroupContent = {
   imageDataContentType: FormControl<IProduct['imageDataContentType']>;
   imageUrl: FormControl<IProduct['imageUrl']>;
   qT: FormControl<IProduct['qT']>;
+  shouldBeNotification: FormControl<IProduct['shouldBeNotification']>;
+  notificationDeleted: FormControl<IProduct['notificationDeleted']>;
+  minQT: FormControl<IProduct['minQT']>;
 };
 
 export type ProductFormGroup = FormGroup<ProductFormGroupContent>;
@@ -51,6 +54,9 @@ export class ProductFormService {
       imageDataContentType: new FormControl(productRawValue.imageDataContentType),
       imageUrl: new FormControl(productRawValue.imageUrl),
       qT: new FormControl(productRawValue.qT),
+      shouldBeNotification: new FormControl(productRawValue.shouldBeNotification),
+      notificationDeleted: new FormControl(productRawValue.notificationDeleted),
+      minQT: new FormControl(productRawValue.minQT),
     });
   }
 
@@ -71,6 +77,8 @@ export class ProductFormService {
   private getFormDefaults(): ProductFormDefaults {
     return {
       id: null,
+      shouldBeNotification: false,
+      notificationDeleted: false,
     };
   }
 }

@@ -8,13 +8,14 @@
     <!--
         Added the constraints for entity Demand.
     -->
-    <changeSet id="20240811231130-5" author="jhipster">
+    <changeSet id="20240811231130-21" author="jhipster">
 
         <addForeignKeyConstraint baseColumnNames="name_id"
                                  baseTableName="Demand"
                                  constraintName="fk_demand__name_id"
                                  referencedColumnNames="id"
                                  referencedTableName="Product"
+                                 onUpdate="CASCADE"
                                  />
     </changeSet>
 </databaseChangeLog>

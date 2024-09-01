@@ -23,7 +23,11 @@
       "name": "Name",
       "imageData": "Image Data",
       "imageUrl": "Image Url",
-      "qT": "Q T"
+      "qT": "Q T",
+      "shouldBeNotification": "Should Be Notification",
+      "notificationDeleted": "Notification Deleted",
+      "minQT": "Min QT",
+      "demand": "Demand"
     }
   }
 }

@@ -1,8 +1,11 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A Product.
@@ -43,6 +46,23 @@ public class Product implements Serializable {
     @Column(name = "q_t")
     @org.springframework.data.elasticsearch.annotations.Field(type = org.springframework.data.elasticsearch.annotations.FieldType.Integer)
     private Integer qT;
+
+    @Column(name = "should_be_notification")
+    @org.springframework.data.elasticsearch.annotations.Field(type = org.springframework.data.elasticsearch.annotations.FieldType.Boolean)
+    private Boolean shouldBeNotification;
+
+    @Column(name = "notification_deleted")
+    @org.springframework.data.elasticsearch.annotations.Field(type = org.springframework.data.elasticsearch.annotations.FieldType.Boolean)
+    private Boolean notificationDeleted;
+
+    @Column(name = "min_qt")
+    @org.springframework.data.elasticsearch.annotations.Field(type = org.springframework.data.elasticsearch.annotations.FieldType.Integer)
+    private Integer minQT;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "name", cascade = CascadeType.REMOVE)
+    @org.springframework.data.annotation.Transient
+    @JsonIgnoreProperties(value = { "name" }, allowSetters = true)
+    private Set<Demand> demands = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -137,6 +157,76 @@ public class Product implements Serializable {
         this.qT = qT;
     }
 
+    public Boolean getShouldBeNotification() {
+        return this.shouldBeNotification;
+    }
+
+    public Product shouldBeNotification(Boolean shouldBeNotification) {
+        this.setShouldBeNotification(shouldBeNotification);
+        return this;
+    }
+
+    public void setShouldBeNotification(Boolean shouldBeNotification) {
+        this.shouldBeNotification = shouldBeNotification;
+    }
+
+    public Boolean getNotificationDeleted() {
+        return this.notificationDeleted;
+    }
+
+    public Product notificationDeleted(Boolean notificationDeleted) {
+        this.setNotificationDeleted(notificationDeleted);
+        return this;
+    }
+
+    public void setNotificationDeleted(Boolean notificationDeleted) {
+        this.notificationDeleted = notificationDeleted;
+    }
+
+    public Integer getMinQT() {
+        return this.minQT;
+    }
+
+    public Product minQT(Integer minQT) {
+        this.setMinQT(minQT);
+        return this;
+    }
+
+    public void setMinQT(Integer minQT) {
+        this.minQT = minQT;
+    }
+
+    public Set<Demand> getDemands() {
+        return this.demands;
+    }
+
+    public void setDemands(Set<Demand> demands) {
+        if (this.demands != null) {
+            this.demands.forEach(i -> i.setName(null));
+        }
+        if (demands != null) {
+            demands.forEach(i -> i.setName(this));
+        }
+        this.demands = demands;
+    }
+
+    public Product demands(Set<Demand> demands) {
+        this.setDemands(demands);
+        return this;
+    }
+
+    public Product addDemand(Demand demand) {
+        this.demands.add(demand);
+        demand.setName(this);
+        return this;
+    }
+
+    public Product removeDemand(Demand demand) {
+        this.demands.remove(demand);
+        demand.setName(null);
+        return this;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -167,6 +257,9 @@ public class Product implements Serializable {
             ", imageDataContentType='" + getImageDataContentType() + "'" +
             ", imageUrl='" + getImageUrl() + "'" +
             ", qT=" + getqT() +
+            ", shouldBeNotification='" + getShouldBeNotification() + "'" +
+            ", notificationDeleted='" + getNotificationDeleted() + "'" +
+            ", minQT=" + getMinQT() +
             "}";
     }
 }

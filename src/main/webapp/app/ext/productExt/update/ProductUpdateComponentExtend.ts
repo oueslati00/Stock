@@ -31,6 +31,26 @@ export class ProductUpdateComponentExtend extends ProductUpdateComponent {
     this.setup();
     this.start();
   }
+
+  save() {
+    this.isSaving = true;
+    const product = this.productFormService.getProduct(this.editForm);
+    const minQt = this.editForm.getRawValue().minQT as number;
+    const QT = this.editForm.getRawValue().qT as number;
+    product.notificationDeleted = false;
+    if (minQt > QT) {
+      product.shouldBeNotification = true;
+    } else {
+      product.shouldBeNotification = false;
+    }
+    if (product.id !== null) {
+      this.subscribeToSaveResponse(this.productService.update(product));
+    } else {
+      // in case of
+      this.subscribeToSaveResponse(this.productService.create(product));
+    }
+  }
+
   currentUserCanAddUpdateDeleteProduct(): boolean {
     const roles = ['ROLE_RES_MAINTENANCE', 'ROLE_ADMIN'];
     return this.currentUserService.hasAnyAuthority(roles);

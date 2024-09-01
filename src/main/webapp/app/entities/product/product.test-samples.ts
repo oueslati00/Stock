@@ -1,27 +1,33 @@
 import { IProduct, NewProduct } from './product.model';
 
 export const sampleWithRequiredData: IProduct = {
-  id: 16943,
-  qrCode: 'cot cot euh équipe de recherche',
+  id: 5114,
+  qrCode: 'percer broum',
 };
 
 export const sampleWithPartialData: IProduct = {
-  id: 15813,
-  qrCode: 'adversaire dring rudement',
+  id: 25735,
+  qrCode: 'oups jusqu’à ce que',
+  name: 'rudement spécialiste',
+  imageData: '../fake-data/blob/hipster.png',
+  imageDataContentType: 'unknown',
 };
 
 export const sampleWithFullData: IProduct = {
-  id: 13438,
-  qrCode: 'servir juriste trop',
-  name: 'guide',
+  id: 17194,
+  qrCode: 'juriste',
+  name: 'gratis',
   imageData: '../fake-data/blob/hipster.png',
   imageDataContentType: 'unknown',
-  imageUrl: 'impromptu',
+  imageUrl: 'moins impromptu',
   qT: 3167,
+  shouldBeNotification: true,
+  notificationDeleted: false,
+  minQT: 6126,
 };
 
 export const sampleWithNewData: NewProduct = {
-  qrCode: 'svelte',
+  qrCode: 'lors vu que à peu près',
   id: null,
 };
 

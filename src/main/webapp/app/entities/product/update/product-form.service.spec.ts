@@ -25,6 +25,9 @@ describe('Product Form Service', () => {
             imageData: expect.any(Object),
             imageUrl: expect.any(Object),
             qT: expect.any(Object),
+            shouldBeNotification: expect.any(Object),
+            notificationDeleted: expect.any(Object),
+            minQT: expect.any(Object),
           }),
         );
       });
@@ -40,6 +43,9 @@ describe('Product Form Service', () => {
             imageData: expect.any(Object),
             imageUrl: expect.any(Object),
             qT: expect.any(Object),
+            shouldBeNotification: expect.any(Object),
+            notificationDeleted: expect.any(Object),
+            minQT: expect.any(Object),
           }),
         );
       });

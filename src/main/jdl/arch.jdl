@@ -4,6 +4,9 @@ entity Product(Product){
         imageData ImageBlob
         imageUrl String
         QT Integer
+        shouldBeNotification Boolean,
+        notificationDeleted Boolean
+        minQT Integer
 }
 
 enum Status {
@@ -109,7 +112,7 @@ enum EvaluationStatus{
 }
 
 relationship ManyToOne{
-     Demand{name(name)} to Product
+      Demand{name(name) required} to  @OnUpdate("CASCADE")  Product
 }
 
 dto * with mapstruct

@@ -46,6 +46,18 @@
           <dd>
             <span>{{ product()!.qT }}</span>
           </dd>
+          <dt><span jhiTranslate="stockProjectApp.product.shouldBeNotification">Should Be Notification</span></dt>
+          <dd>
+            <span>{{ product()!.shouldBeNotification }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.product.notificationDeleted">Notification Deleted</span></dt>
+          <dd>
+            <span>{{ product()!.notificationDeleted }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.product.minQT">Min QT</span></dt>
+          <dd>
+            <span>{{ product()!.minQT }}</span>
+          </dd>
         </dl>
 
         <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

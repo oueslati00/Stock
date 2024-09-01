@@ -27,6 +27,12 @@ public class ProductDTO implements Serializable {
 
     private Integer qT;
 
+    private Boolean shouldBeNotification;
+
+    private Boolean notificationDeleted;
+
+    private Integer minQT;
+
     public Long getId() {
         return id;
     }
@@ -83,6 +89,30 @@ public class ProductDTO implements Serializable {
         this.qT = qT;
     }
 
+    public Boolean getShouldBeNotification() {
+        return shouldBeNotification;
+    }
+
+    public void setShouldBeNotification(Boolean shouldBeNotification) {
+        this.shouldBeNotification = shouldBeNotification;
+    }
+
+    public Boolean getNotificationDeleted() {
+        return notificationDeleted;
+    }
+
+    public void setNotificationDeleted(Boolean notificationDeleted) {
+        this.notificationDeleted = notificationDeleted;
+    }
+
+    public Integer getMinQT() {
+        return minQT;
+    }
+
+    public void setMinQT(Integer minQT) {
+        this.minQT = minQT;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -114,6 +144,9 @@ public class ProductDTO implements Serializable {
             ", imageData='" + getImageData() + "'" +
             ", imageUrl='" + getImageUrl() + "'" +
             ", qT=" + getqT() +
+            ", shouldBeNotification='" + getShouldBeNotification() + "'" +
+            ", notificationDeleted='" + getNotificationDeleted() + "'" +
+            ", minQT=" + getMinQT() +
             "}";
     }
 }

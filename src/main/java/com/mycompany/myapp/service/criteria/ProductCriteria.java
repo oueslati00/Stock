@@ -32,6 +32,14 @@ public class ProductCriteria implements Serializable, Criteria {
 
     private IntegerFilter qT;
 
+    private BooleanFilter shouldBeNotification;
+
+    private BooleanFilter notificationDeleted;
+
+    private IntegerFilter minQT;
+
+    private LongFilter demandId;
+
     private Boolean distinct;
 
     public ProductCriteria() {}
@@ -42,6 +50,10 @@ public class ProductCriteria implements Serializable, Criteria {
         this.name = other.optionalName().map(StringFilter::copy).orElse(null);
         this.imageUrl = other.optionalImageUrl().map(StringFilter::copy).orElse(null);
         this.qT = other.optionalqT().map(IntegerFilter::copy).orElse(null);
+        this.shouldBeNotification = other.optionalShouldBeNotification().map(BooleanFilter::copy).orElse(null);
+        this.notificationDeleted = other.optionalNotificationDeleted().map(BooleanFilter::copy).orElse(null);
+        this.minQT = other.optionalMinQT().map(IntegerFilter::copy).orElse(null);
+        this.demandId = other.optionalDemandId().map(LongFilter::copy).orElse(null);
         this.distinct = other.distinct;
     }
 
@@ -145,6 +157,82 @@ public class ProductCriteria implements Serializable, Criteria {
         this.qT = qT;
     }
 
+    public BooleanFilter getShouldBeNotification() {
+        return shouldBeNotification;
+    }
+
+    public Optional<BooleanFilter> optionalShouldBeNotification() {
+        return Optional.ofNullable(shouldBeNotification);
+    }
+
+    public BooleanFilter shouldBeNotification() {
+        if (shouldBeNotification == null) {
+            setShouldBeNotification(new BooleanFilter());
+        }
+        return shouldBeNotification;
+    }
+
+    public void setShouldBeNotification(BooleanFilter shouldBeNotification) {
+        this.shouldBeNotification = shouldBeNotification;
+    }
+
+    public BooleanFilter getNotificationDeleted() {
+        return notificationDeleted;
+    }
+
+    public Optional<BooleanFilter> optionalNotificationDeleted() {
+        return Optional.ofNullable(notificationDeleted);
+    }
+
+    public BooleanFilter notificationDeleted() {
+        if (notificationDeleted == null) {
+            setNotificationDeleted(new BooleanFilter());
+        }
+        return notificationDeleted;
+    }
+
+    public void setNotificationDeleted(BooleanFilter notificationDeleted) {
+        this.notificationDeleted = notificationDeleted;
+    }
+
+    public IntegerFilter getMinQT() {
+        return minQT;
+    }
+
+    public Optional<IntegerFilter> optionalMinQT() {
+        return Optional.ofNullable(minQT);
+    }
+
+    public IntegerFilter minQT() {
+        if (minQT == null) {
+            setMinQT(new IntegerFilter());
+        }
+        return minQT;
+    }
+
+    public void setMinQT(IntegerFilter minQT) {
+        this.minQT = minQT;
+    }
+
+    public LongFilter getDemandId() {
+        return demandId;
+    }
+
+    public Optional<LongFilter> optionalDemandId() {
+        return Optional.ofNullable(demandId);
+    }
+
+    public LongFilter demandId() {
+        if (demandId == null) {
+            setDemandId(new LongFilter());
+        }
+        return demandId;
+    }
+
+    public void setDemandId(LongFilter demandId) {
+        this.demandId = demandId;
+    }
+
     public Boolean getDistinct() {
         return distinct;
     }
@@ -179,13 +267,17 @@ public class ProductCriteria implements Serializable, Criteria {
             Objects.equals(name, that.name) &&
             Objects.equals(imageUrl, that.imageUrl) &&
             Objects.equals(qT, that.qT) &&
+            Objects.equals(shouldBeNotification, that.shouldBeNotification) &&
+            Objects.equals(notificationDeleted, that.notificationDeleted) &&
+            Objects.equals(minQT, that.minQT) &&
+            Objects.equals(demandId, that.demandId) &&
             Objects.equals(distinct, that.distinct)
         );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, qrCode, name, imageUrl, qT, distinct);
+        return Objects.hash(id, qrCode, name, imageUrl, qT, shouldBeNotification, notificationDeleted, minQT, demandId, distinct);
     }
 
     // prettier-ignore
@@ -197,6 +289,10 @@ public class ProductCriteria implements Serializable, Criteria {
             optionalName().map(f -> "name=" + f + ", ").orElse("") +
             optionalImageUrl().map(f -> "imageUrl=" + f + ", ").orElse("") +
             optionalqT().map(f -> "qT=" + f + ", ").orElse("") +
+            optionalShouldBeNotification().map(f -> "shouldBeNotification=" + f + ", ").orElse("") +
+            optionalNotificationDeleted().map(f -> "notificationDeleted=" + f + ", ").orElse("") +
+            optionalMinQT().map(f -> "minQT=" + f + ", ").orElse("") +
+            optionalDemandId().map(f -> "demandId=" + f + ", ").orElse("") +
             optionalDistinct().map(f -> "distinct=" + f + ", ").orElse("") +
         "}";
     }

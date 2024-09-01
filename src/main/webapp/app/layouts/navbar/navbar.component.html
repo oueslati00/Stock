@@ -54,6 +54,25 @@
             </a>
           </li>
         }
+        <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active">
+          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu" data-cy="adminMenu">
+            <span>
+              <fa-icon icon="note"></fa-icon>
+              <span>Notification</span>
+            </span>
+          </a>
+          <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="admin-menu">
+            @for (prod of productList; track i; let i = $index) {
+              <li (click)="deleteNotification(prod)">
+                <a class="dropdown-item" (click)="collapseNavbar()">
+                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                  <span>{{ prod.name }} : available stock {{ prod.qT }} and the min stock should be {{ prod.minQT }}</span>
+                  <fa-icon icon="times"></fa-icon>
+                </a>
+              </li>
+            }
+          </ul>
+        </li>
         <li
           *jhiHasAnyAuthority="'ROLE_ADMIN'"
           ngbDropdown

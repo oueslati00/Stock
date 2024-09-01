@@ -54,7 +54,14 @@ public class ProductAsserts {
                 e -> assertThat(e.getImageDataContentType()).as("check imageData contenty type").isEqualTo(actual.getImageDataContentType())
             )
             .satisfies(e -> assertThat(e.getImageUrl()).as("check imageUrl").isEqualTo(actual.getImageUrl()))
-            .satisfies(e -> assertThat(e.getqT()).as("check qT").isEqualTo(actual.getqT()));
+            .satisfies(e -> assertThat(e.getqT()).as("check qT").isEqualTo(actual.getqT()))
+            .satisfies(
+                e -> assertThat(e.getShouldBeNotification()).as("check shouldBeNotification").isEqualTo(actual.getShouldBeNotification())
+            )
+            .satisfies(
+                e -> assertThat(e.getNotificationDeleted()).as("check notificationDeleted").isEqualTo(actual.getNotificationDeleted())
+            )
+            .satisfies(e -> assertThat(e.getMinQT()).as("check minQT").isEqualTo(actual.getMinQT()));
     }
 
     /**

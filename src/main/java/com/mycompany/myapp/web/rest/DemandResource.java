@@ -7,6 +7,8 @@ import com.mycompany.myapp.service.criteria.DemandCriteria;
 import com.mycompany.myapp.service.dto.DemandDTO;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 import com.mycompany.myapp.web.rest.errors.ElasticsearchExceptionMapper;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -61,7 +63,7 @@ public class DemandResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("")
-    public ResponseEntity<DemandDTO> createDemand(@RequestBody DemandDTO demandDTO) throws URISyntaxException {
+    public ResponseEntity<DemandDTO> createDemand(@Valid @RequestBody DemandDTO demandDTO) throws URISyntaxException {
         log.debug("REST request to save Demand : {}", demandDTO);
         if (demandDTO.getId() != null) {
             throw new BadRequestAlertException("A new demand cannot already have an ID", ENTITY_NAME, "idexists");
@@ -85,7 +87,7 @@ public class DemandResource {
     @PutMapping("/{id}")
     public ResponseEntity<DemandDTO> updateDemand(
         @PathVariable(value = "id", required = false) final Long id,
-        @RequestBody DemandDTO demandDTO
+        @Valid @RequestBody DemandDTO demandDTO
     ) throws URISyntaxException {
         log.debug("REST request to update Demand : {}, {}", id, demandDTO);
         if (demandDTO.getId() == null) {
@@ -98,11 +100,14 @@ public class DemandResource {
         if (!demandRepository.existsById(id)) {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
-
-        demandDTO = demandService.update(demandDTO);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, demandDTO.getId().toString()))
-            .body(demandDTO);
+        try {
+            demandDTO = demandService.update(demandDTO);
+            return ResponseEntity.ok()
+                .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, demandDTO.getId().toString()))
+                .body(demandDTO);
+        } catch (RuntimeException e) {
+            throw new BadRequestAlertException(e.getMessage(), ENTITY_NAME, "invalidquantite");
+        }
     }
 
     /**
@@ -119,7 +124,7 @@ public class DemandResource {
     @PatchMapping(value = "/{id}", consumes = { "application/json", "application/merge-patch+json" })
     public ResponseEntity<DemandDTO> partialUpdateDemand(
         @PathVariable(value = "id", required = false) final Long id,
-        @RequestBody DemandDTO demandDTO
+        @NotNull @RequestBody DemandDTO demandDTO
     ) throws URISyntaxException {
         log.debug("REST request to partial update Demand partially : {}, {}", id, demandDTO);
         if (demandDTO.getId() == null) {

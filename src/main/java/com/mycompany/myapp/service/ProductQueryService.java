@@ -7,6 +7,7 @@ import com.mycompany.myapp.repository.search.ProductSearchRepository;
 import com.mycompany.myapp.service.criteria.ProductCriteria;
 import com.mycompany.myapp.service.dto.ProductDTO;
 import com.mycompany.myapp.service.mapper.ProductMapper;
+import jakarta.persistence.criteria.JoinType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -95,6 +96,20 @@ public class ProductQueryService extends QueryService<Product> {
             }
             if (criteria.getqT() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getqT(), Product_.qT));
+            }
+            if (criteria.getShouldBeNotification() != null) {
+                specification = specification.and(buildSpecification(criteria.getShouldBeNotification(), Product_.shouldBeNotification));
+            }
+            if (criteria.getNotificationDeleted() != null) {
+                specification = specification.and(buildSpecification(criteria.getNotificationDeleted(), Product_.notificationDeleted));
+            }
+            if (criteria.getMinQT() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getMinQT(), Product_.minQT));
+            }
+            if (criteria.getDemandId() != null) {
+                specification = specification.and(
+                    buildSpecification(criteria.getDemandId(), root -> root.join(Product_.demands, JoinType.LEFT).get(Demand_.id))
+                );
             }
         }
         return specification;

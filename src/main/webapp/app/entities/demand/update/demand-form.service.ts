@@ -61,7 +61,9 @@ export class DemandFormService {
       demandDate: new FormControl(demandRawValue.demandDate),
       status: new FormControl(demandRawValue.status),
       validate: new FormControl(demandRawValue.validate),
-      name: new FormControl(demandRawValue.name),
+      name: new FormControl(demandRawValue.name, {
+        validators: [Validators.required],
+      }),
     });
   }
 

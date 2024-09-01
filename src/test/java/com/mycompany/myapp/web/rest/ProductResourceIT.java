@@ -60,6 +60,16 @@ class ProductResourceIT {
     private static final Integer UPDATED_Q_T = 2;
     private static final Integer SMALLER_Q_T = 1 - 1;
 
+    private static final Boolean DEFAULT_SHOULD_BE_NOTIFICATION = false;
+    private static final Boolean UPDATED_SHOULD_BE_NOTIFICATION = true;
+
+    private static final Boolean DEFAULT_NOTIFICATION_DELETED = false;
+    private static final Boolean UPDATED_NOTIFICATION_DELETED = true;
+
+    private static final Integer DEFAULT_MIN_QT = 1;
+    private static final Integer UPDATED_MIN_QT = 2;
+    private static final Integer SMALLER_MIN_QT = 1 - 1;
+
     private static final String ENTITY_API_URL = "/api/products";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
     private static final String ENTITY_SEARCH_API_URL = "/api/products/_search";
@@ -102,7 +112,10 @@ class ProductResourceIT {
             .imageData(DEFAULT_IMAGE_DATA)
             .imageDataContentType(DEFAULT_IMAGE_DATA_CONTENT_TYPE)
             .imageUrl(DEFAULT_IMAGE_URL)
-            .qT(DEFAULT_Q_T);
+            .qT(DEFAULT_Q_T)
+            .shouldBeNotification(DEFAULT_SHOULD_BE_NOTIFICATION)
+            .notificationDeleted(DEFAULT_NOTIFICATION_DELETED)
+            .minQT(DEFAULT_MIN_QT);
         return product;
     }
 
@@ -119,7 +132,10 @@ class ProductResourceIT {
             .imageData(UPDATED_IMAGE_DATA)
             .imageDataContentType(UPDATED_IMAGE_DATA_CONTENT_TYPE)
             .imageUrl(UPDATED_IMAGE_URL)
-            .qT(UPDATED_Q_T);
+            .qT(UPDATED_Q_T)
+            .shouldBeNotification(UPDATED_SHOULD_BE_NOTIFICATION)
+            .notificationDeleted(UPDATED_NOTIFICATION_DELETED)
+            .minQT(UPDATED_MIN_QT);
         return product;
     }
 
@@ -228,7 +244,10 @@ class ProductResourceIT {
             .andExpect(jsonPath("$.[*].imageDataContentType").value(hasItem(DEFAULT_IMAGE_DATA_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].imageData").value(hasItem(Base64.getEncoder().encodeToString(DEFAULT_IMAGE_DATA))))
             .andExpect(jsonPath("$.[*].imageUrl").value(hasItem(DEFAULT_IMAGE_URL)))
-            .andExpect(jsonPath("$.[*].qT").value(hasItem(DEFAULT_Q_T)));
+            .andExpect(jsonPath("$.[*].qT").value(hasItem(DEFAULT_Q_T)))
+            .andExpect(jsonPath("$.[*].shouldBeNotification").value(hasItem(DEFAULT_SHOULD_BE_NOTIFICATION.booleanValue())))
+            .andExpect(jsonPath("$.[*].notificationDeleted").value(hasItem(DEFAULT_NOTIFICATION_DELETED.booleanValue())))
+            .andExpect(jsonPath("$.[*].minQT").value(hasItem(DEFAULT_MIN_QT)));
     }
 
     @Test
@@ -248,7 +267,10 @@ class ProductResourceIT {
             .andExpect(jsonPath("$.imageDataContentType").value(DEFAULT_IMAGE_DATA_CONTENT_TYPE))
             .andExpect(jsonPath("$.imageData").value(Base64.getEncoder().encodeToString(DEFAULT_IMAGE_DATA)))
             .andExpect(jsonPath("$.imageUrl").value(DEFAULT_IMAGE_URL))
-            .andExpect(jsonPath("$.qT").value(DEFAULT_Q_T));
+            .andExpect(jsonPath("$.qT").value(DEFAULT_Q_T))
+            .andExpect(jsonPath("$.shouldBeNotification").value(DEFAULT_SHOULD_BE_NOTIFICATION.booleanValue()))
+            .andExpect(jsonPath("$.notificationDeleted").value(DEFAULT_NOTIFICATION_DELETED.booleanValue()))
+            .andExpect(jsonPath("$.minQT").value(DEFAULT_MIN_QT));
     }
 
     @Test
@@ -486,6 +508,148 @@ class ProductResourceIT {
         defaultProductFiltering("qT.greaterThan=" + SMALLER_Q_T, "qT.greaterThan=" + DEFAULT_Q_T);
     }
 
+    @Test
+    @Transactional
+    void getAllProductsByShouldBeNotificationIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedProduct = productRepository.saveAndFlush(product);
+
+        // Get all the productList where shouldBeNotification equals to
+        defaultProductFiltering(
+            "shouldBeNotification.equals=" + DEFAULT_SHOULD_BE_NOTIFICATION,
+            "shouldBeNotification.equals=" + UPDATED_SHOULD_BE_NOTIFICATION
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllProductsByShouldBeNotificationIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedProduct = productRepository.saveAndFlush(product);
+
+        // Get all the productList where shouldBeNotification in
+        defaultProductFiltering(
+            "shouldBeNotification.in=" + DEFAULT_SHOULD_BE_NOTIFICATION + "," + UPDATED_SHOULD_BE_NOTIFICATION,
+            "shouldBeNotification.in=" + UPDATED_SHOULD_BE_NOTIFICATION
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllProductsByShouldBeNotificationIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedProduct = productRepository.saveAndFlush(product);
+
+        // Get all the productList where shouldBeNotification is not null
+        defaultProductFiltering("shouldBeNotification.specified=true", "shouldBeNotification.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllProductsByNotificationDeletedIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedProduct = productRepository.saveAndFlush(product);
+
+        // Get all the productList where notificationDeleted equals to
+        defaultProductFiltering(
+            "notificationDeleted.equals=" + DEFAULT_NOTIFICATION_DELETED,
+            "notificationDeleted.equals=" + UPDATED_NOTIFICATION_DELETED
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllProductsByNotificationDeletedIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedProduct = productRepository.saveAndFlush(product);
+
+        // Get all the productList where notificationDeleted in
+        defaultProductFiltering(
+            "notificationDeleted.in=" + DEFAULT_NOTIFICATION_DELETED + "," + UPDATED_NOTIFICATION_DELETED,
+            "notificationDeleted.in=" + UPDATED_NOTIFICATION_DELETED
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllProductsByNotificationDeletedIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedProduct = productRepository.saveAndFlush(product);
+
+        // Get all the productList where notificationDeleted is not null
+        defaultProductFiltering("notificationDeleted.specified=true", "notificationDeleted.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllProductsByMinQTIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedProduct = productRepository.saveAndFlush(product);
+
+        // Get all the productList where minQT equals to
+        defaultProductFiltering("minQT.equals=" + DEFAULT_MIN_QT, "minQT.equals=" + UPDATED_MIN_QT);
+    }
+
+    @Test
+    @Transactional
+    void getAllProductsByMinQTIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedProduct = productRepository.saveAndFlush(product);
+
+        // Get all the productList where minQT in
+        defaultProductFiltering("minQT.in=" + DEFAULT_MIN_QT + "," + UPDATED_MIN_QT, "minQT.in=" + UPDATED_MIN_QT);
+    }
+
+    @Test
+    @Transactional
+    void getAllProductsByMinQTIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedProduct = productRepository.saveAndFlush(product);
+
+        // Get all the productList where minQT is not null
+        defaultProductFiltering("minQT.specified=true", "minQT.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllProductsByMinQTIsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedProduct = productRepository.saveAndFlush(product);
+
+        // Get all the productList where minQT is greater than or equal to
+        defaultProductFiltering("minQT.greaterThanOrEqual=" + DEFAULT_MIN_QT, "minQT.greaterThanOrEqual=" + UPDATED_MIN_QT);
+    }
+
+    @Test
+    @Transactional
+    void getAllProductsByMinQTIsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedProduct = productRepository.saveAndFlush(product);
+
+        // Get all the productList where minQT is less than or equal to
+        defaultProductFiltering("minQT.lessThanOrEqual=" + DEFAULT_MIN_QT, "minQT.lessThanOrEqual=" + SMALLER_MIN_QT);
+    }
+
+    @Test
+    @Transactional
+    void getAllProductsByMinQTIsLessThanSomething() throws Exception {
+        // Initialize the database
+        insertedProduct = productRepository.saveAndFlush(product);
+
+        // Get all the productList where minQT is less than
+        defaultProductFiltering("minQT.lessThan=" + UPDATED_MIN_QT, "minQT.lessThan=" + DEFAULT_MIN_QT);
+    }
+
+    @Test
+    @Transactional
+    void getAllProductsByMinQTIsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        insertedProduct = productRepository.saveAndFlush(product);
+
+        // Get all the productList where minQT is greater than
+        defaultProductFiltering("minQT.greaterThan=" + SMALLER_MIN_QT, "minQT.greaterThan=" + DEFAULT_MIN_QT);
+    }
+
     private void defaultProductFiltering(String shouldBeFound, String shouldNotBeFound) throws Exception {
         defaultProductShouldBeFound(shouldBeFound);
         defaultProductShouldNotBeFound(shouldNotBeFound);
@@ -505,7 +669,10 @@ class ProductResourceIT {
             .andExpect(jsonPath("$.[*].imageDataContentType").value(hasItem(DEFAULT_IMAGE_DATA_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].imageData").value(hasItem(Base64.getEncoder().encodeToString(DEFAULT_IMAGE_DATA))))
             .andExpect(jsonPath("$.[*].imageUrl").value(hasItem(DEFAULT_IMAGE_URL)))
-            .andExpect(jsonPath("$.[*].qT").value(hasItem(DEFAULT_Q_T)));
+            .andExpect(jsonPath("$.[*].qT").value(hasItem(DEFAULT_Q_T)))
+            .andExpect(jsonPath("$.[*].shouldBeNotification").value(hasItem(DEFAULT_SHOULD_BE_NOTIFICATION.booleanValue())))
+            .andExpect(jsonPath("$.[*].notificationDeleted").value(hasItem(DEFAULT_NOTIFICATION_DELETED.booleanValue())))
+            .andExpect(jsonPath("$.[*].minQT").value(hasItem(DEFAULT_MIN_QT)));
 
         // Check, that the count call also returns 1
         restProductMockMvc
@@ -561,7 +728,10 @@ class ProductResourceIT {
             .imageData(UPDATED_IMAGE_DATA)
             .imageDataContentType(UPDATED_IMAGE_DATA_CONTENT_TYPE)
             .imageUrl(UPDATED_IMAGE_URL)
-            .qT(UPDATED_Q_T);
+            .qT(UPDATED_Q_T)
+            .shouldBeNotification(UPDATED_SHOULD_BE_NOTIFICATION)
+            .notificationDeleted(UPDATED_NOTIFICATION_DELETED)
+            .minQT(UPDATED_MIN_QT);
         ProductDTO productDTO = productMapper.toDto(updatedProduct);
 
         restProductMockMvc
@@ -701,7 +871,10 @@ class ProductResourceIT {
             .imageData(UPDATED_IMAGE_DATA)
             .imageDataContentType(UPDATED_IMAGE_DATA_CONTENT_TYPE)
             .imageUrl(UPDATED_IMAGE_URL)
-            .qT(UPDATED_Q_T);
+            .qT(UPDATED_Q_T)
+            .shouldBeNotification(UPDATED_SHOULD_BE_NOTIFICATION)
+            .notificationDeleted(UPDATED_NOTIFICATION_DELETED)
+            .minQT(UPDATED_MIN_QT);
 
         restProductMockMvc
             .perform(
@@ -829,7 +1002,10 @@ class ProductResourceIT {
             .andExpect(jsonPath("$.[*].imageDataContentType").value(hasItem(DEFAULT_IMAGE_DATA_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].imageData").value(hasItem(Base64.getEncoder().encodeToString(DEFAULT_IMAGE_DATA))))
             .andExpect(jsonPath("$.[*].imageUrl").value(hasItem(DEFAULT_IMAGE_URL)))
-            .andExpect(jsonPath("$.[*].qT").value(hasItem(DEFAULT_Q_T)));
+            .andExpect(jsonPath("$.[*].qT").value(hasItem(DEFAULT_Q_T)))
+            .andExpect(jsonPath("$.[*].shouldBeNotification").value(hasItem(DEFAULT_SHOULD_BE_NOTIFICATION.booleanValue())))
+            .andExpect(jsonPath("$.[*].notificationDeleted").value(hasItem(DEFAULT_NOTIFICATION_DELETED.booleanValue())))
+            .andExpect(jsonPath("$.[*].minQT").value(hasItem(DEFAULT_MIN_QT)));
     }
 
     protected long getRepositoryCount() {

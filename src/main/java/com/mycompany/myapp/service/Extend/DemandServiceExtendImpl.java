@@ -47,14 +47,20 @@ public class DemandServiceExtendImpl extends DemandServiceImpl implements Demand
 
         Demand demand = demandMapper.toEntity(demandDTO);
         addProduct(demand);
-        updateQT(demand);
+        boolean QTupdated = updateQT(demand);
+        if (demand.getName().getqT() < 0) {
+            throw new RuntimeException("cannot validate this demand : reason not quantity available !!");
+        }
+        if (QTupdated) {
+            updateNotification(demand);
+        }
         demand = demandRepository.save(demand);
         demandSearchRepository.index(demand);
         return demandMapper.toDto(demand);
     }
 
     // update the quantity only if status was in progress and the validation was true
-    private void updateQT(Demand demand) {
+    private boolean updateQT(Demand demand) {
         if (demand.getValidate() != null && demand.getValidate() && demand.getStatus().equals(Status.IN_PROGRESS)) {
             // set demand status to approved
             // update QT
@@ -62,9 +68,20 @@ public class DemandServiceExtendImpl extends DemandServiceImpl implements Demand
             Product product = demand.getName();
             int restQt = product.getqT() - demand.getqT();
             product.setqT(restQt);
+            return true;
         }
         if (demand.getValidate() != null && !demand.getValidate() && demand.getStatus().equals(Status.IN_PROGRESS)) {
             demand.setStatus(Status.REJECTED);
+            return false;
+        }
+        return false;
+    }
+
+    private void updateNotification(Demand demand) {
+        var product = demand.getName();
+        if (product.getMinQT() >= product.getqT()) {
+            product.setShouldBeNotification(true);
+            product.setNotificationDeleted(false);
         }
     }
 
