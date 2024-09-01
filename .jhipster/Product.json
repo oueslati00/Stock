@@ -1,0 +1,37 @@
+{
+  "annotations": {
+    "changelogDate": "20240811145057"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "entityTableName": "Product",
+  "fields": [
+    {
+      "fieldName": "qrCode",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "imageData",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "imageUrl",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "qT",
+      "fieldType": "Integer"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Product",
+  "pagination": "pagination",
+  "relationships": [],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,232 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (reportInterventionList()) {
+      <div>
+        <h2 data-cy="reportInterventionListDetailsHeading">
+          <span jhiTranslate="stockProjectApp.reportInterventionList.detail.title">Report Intervention List</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.site">Site</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.site }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.codeAgence">Code Agence</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.codeAgence }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.affaireNumber">Affaire Number</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.affaireNumber }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.contractNumber">Contract Number</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.contractNumber }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.installationAdress">Installation Adress</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.installationAdress }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.interlocuteurIntervation">Interlocuteur Intervation</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.interlocuteurIntervation }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.tel">Tel</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.tel }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.installationSousContract">Installation Sous Contract</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.installationSousContract }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.installationSousGarantie">Installation Sous Garantie</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.installationSousGarantie }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.adressFacturation">Adress Facturation</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.adressFacturation }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.interlocuteurFacturation">Interlocuteur Facturation</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.interlocuteurFacturation }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.conditionDePayementCheque">Condition De Payement Cheque</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.conditionDePayementCheque }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.conditionPayementAutre">Condition Payement Autre</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.conditionPayementAutre }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.conditionPayementComment">Condition Payement Comment</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.conditionPayementComment }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.miseEnServiceDefinitvie">Mise En Service Definitvie</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.miseEnServiceDefinitvie }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.miseEnServicePartielle">Mise En Service Partielle</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.miseEnServicePartielle }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.maintenancePreventive">Maintenance Preventive</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.maintenancePreventive }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.maintenanceCorrective">Maintenance Corrective</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.maintenanceCorrective }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.bT">B T</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.bT }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.anomalieSignalee">Anomalie Signalee</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.anomalieSignalee }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.interventionDate">Intervention Date</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.interventionDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.interventionStartDate">Intervention Start Date</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.interventionStartDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.remiseServiceDate">Remise Service Date</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.remiseServiceDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.endDate">End Date</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.endDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.natureIntervention">Nature Intervention</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.natureIntervention }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="stockProjectApp.reportInterventionList.causeExterieurInstallation">Cause Exterieur Installation</span>
+          </dt>
+          <dd>
+            <span>{{ reportInterventionList()!.causeExterieurInstallation }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="stockProjectApp.reportInterventionList.installationFonctionnelleApresInervention"
+              >Installation Fonctionnelle Apres Inervention</span
+            >
+          </dt>
+          <dd>
+            <span>{{ reportInterventionList()!.installationFonctionnelleApresInervention }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="stockProjectApp.reportInterventionList.autreInterventionsAPrevoir">Autre Interventions A Prevoir</span>
+          </dt>
+          <dd>
+            <span>{{ reportInterventionList()!.autreInterventionsAPrevoir }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.clientApreciation">Client Apreciation</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.clientApreciation }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.respectDelais">Respect Delais</span></dt>
+          <dd>
+            <span [jhiTranslate]="'stockProjectApp.EvaluationStatus.' + (reportInterventionList()!.respectDelais ?? 'null')">{{
+              {
+                null: '',
+                TRES_SATISFAISANT: 'TRES_SATISFAISANT',
+                SATISFAISANT: 'SATISFAISANT',
+                PASSABLE: 'PASSABLE',
+                MEDIOCRE: 'MEDIOCRE',
+              }[reportInterventionList()!.respectDelais ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.qualiteIntervention">Qualite Intervention</span></dt>
+          <dd>
+            <span [jhiTranslate]="'stockProjectApp.EvaluationStatus.' + (reportInterventionList()!.qualiteIntervention ?? 'null')">{{
+              {
+                null: '',
+                TRES_SATISFAISANT: 'TRES_SATISFAISANT',
+                SATISFAISANT: 'SATISFAISANT',
+                PASSABLE: 'PASSABLE',
+                MEDIOCRE: 'MEDIOCRE',
+              }[reportInterventionList()!.qualiteIntervention ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.qualiteDevoirConseil">Qualite Devoir Conseil</span></dt>
+          <dd>
+            <span [jhiTranslate]="'stockProjectApp.EvaluationStatus.' + (reportInterventionList()!.qualiteDevoirConseil ?? 'null')">{{
+              {
+                null: '',
+                TRES_SATISFAISANT: 'TRES_SATISFAISANT',
+                SATISFAISANT: 'SATISFAISANT',
+                PASSABLE: 'PASSABLE',
+                MEDIOCRE: 'MEDIOCRE',
+              }[reportInterventionList()!.qualiteDevoirConseil ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.prestationsAchevees">Prestations Achevees</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.prestationsAchevees }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.devisComplentaire">Devis Complentaire</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.devisComplentaire }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.technicienName">Technicien Name</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.technicienName }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.codeTechnicien">Code Technicien</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.codeTechnicien }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.validationClientName">Validation Client Name</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.validationClientName }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.validationNameFunction">Validation Name Function</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.validationNameFunction }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.validationClientDate">Validation Client Date</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.validationClientDate | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.bonPourCommand">Bon Pour Command</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.bonPourCommand }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.createdBy">Created By</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.createdBy }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.reportInterventionList.validation">Validation</span></dt>
+          <dd>
+            <span>{{ reportInterventionList()!.validation }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/report-intervention-list', reportInterventionList()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

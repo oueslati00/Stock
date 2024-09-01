@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (product()) {
+      <div>
+        <h2 data-cy="productDetailsHeading"><span jhiTranslate="stockProjectApp.product.detail.title">Product</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ product()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.product.qrCode">Qr Code</span></dt>
+          <dd>
+            <span>{{ product()!.qrCode }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.product.name">Name</span></dt>
+          <dd>
+            <span>{{ product()!.name }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.product.imageData">Image Data</span></dt>
+          <dd>
+            @if (product()!.imageData) {
+              <div>
+                <a (click)="openFile(product()!.imageData ?? '', product()!.imageDataContentType)">
+                  <img
+                    [src]="'data:' + product()!.imageDataContentType + ';base64,' + product()!.imageData"
+                    style="max-width: 100%"
+                    alt="product"
+                  />
+                </a>
+                {{ product()!.imageDataContentType }}, {{ byteSize(product()!.imageData ?? '') }}
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.product.imageUrl">Image Url</span></dt>
+          <dd>
+            <span>{{ product()!.imageUrl }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.product.qT">Q T</span></dt>
+          <dd>
+            <span>{{ product()!.qT }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+        @if (currentUserCanAddUpdateDeleteProduct()) {
+          <button type="button" [routerLink]="['/product', product()!.id, 'edit']" class="btn btn-primary">
+            <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+          </button>
+        }
+      </div>
+    }
+  </div>
+</div>

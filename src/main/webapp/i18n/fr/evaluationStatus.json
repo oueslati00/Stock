@@ -1,0 +1,11 @@
+{
+  "stockProjectApp": {
+    "EvaluationStatus": {
+      "null": "",
+      "TRES_SATISFAISANT": "TRES_SATISFAISANT",
+      "SATISFAISANT": "SATISFAISANT",
+      "PASSABLE": "PASSABLE",
+      "MEDIOCRE": "MEDIOCRE"
+    }
+  }
+}

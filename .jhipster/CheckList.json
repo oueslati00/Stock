@@ -1,0 +1,152 @@
+{
+  "annotations": {
+    "changelogDate": "20240817123339"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "client",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "contractNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "adress",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "technicienDef",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "tableDetectionTaskStatus",
+      "fieldType": "TaskStatus",
+      "fieldValues": "INSPECTED,REPAIRED,PRD"
+    },
+    {
+      "fieldName": "tableDetectionComment",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "diDMTaskStatus",
+      "fieldType": "TaskStatus",
+      "fieldValues": "INSPECTED,REPAIRED,PRD"
+    },
+    {
+      "fieldName": "diDMComment",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "detecteursPonctuelsTaskStatus",
+      "fieldType": "TaskStatus",
+      "fieldValues": "INSPECTED,REPAIRED,PRD"
+    },
+    {
+      "fieldName": "detecteursPonctuelsComment",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "declencheurManuelsTaskStatus",
+      "fieldType": "TaskStatus",
+      "fieldValues": "INSPECTED,REPAIRED,PRD"
+    },
+    {
+      "fieldName": "declencheurManuelsComment",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "tableMiseSecurityIncendieTaskStatus",
+      "fieldType": "TaskStatus",
+      "fieldValues": "INSPECTED,REPAIRED,PRD"
+    },
+    {
+      "fieldName": "tableMiseSecurityIncendieComment",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "alimentationSecoursTaskStatus",
+      "fieldType": "TaskStatus",
+      "fieldValues": "INSPECTED,REPAIRED,PRD"
+    },
+    {
+      "fieldName": "alimentationSecoursComment",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "equipementAlarmeTaskStatus",
+      "fieldType": "TaskStatus",
+      "fieldValues": "INSPECTED,REPAIRED,PRD"
+    },
+    {
+      "fieldName": "equipementAlarmeComment",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "dasTaskStatus",
+      "fieldType": "TaskStatus",
+      "fieldValues": "INSPECTED,REPAIRED,PRD"
+    },
+    {
+      "fieldName": "dasComment",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "arretTechniqueTaskStatus",
+      "fieldType": "TaskStatus",
+      "fieldValues": "INSPECTED,REPAIRED,PRD"
+    },
+    {
+      "fieldName": "arretTechniqueComment",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "baiePcsTaskStatus",
+      "fieldType": "TaskStatus",
+      "fieldValues": "INSPECTED,REPAIRED,PRD"
+    },
+    {
+      "fieldName": "baiePCScomment",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "superviseurTaskStatus",
+      "fieldType": "TaskStatus",
+      "fieldValues": "INSPECTED,REPAIRED,PRD"
+    },
+    {
+      "fieldName": "superviseurComment",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "validate",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "CheckList",
+  "pagination": "pagination",
+  "relationships": [],
+  "service": "serviceImpl"
+}

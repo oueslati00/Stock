@@ -1,0 +1,53 @@
+{
+  "stockProjectApp": {
+    "checkList": {
+      "home": {
+        "title": "CheckLists",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Check List",
+        "createOrEditLabel": "Créer ou éditer un Check List",
+        "search": "Recherche pour Check List",
+        "notFound": "Aucun Check List trouvé"
+      },
+      "created": "Un nouveau Check List a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Check List avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Check List avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Check List {{ id }} ?"
+      },
+      "detail": {
+        "title": "Check List"
+      },
+      "id": "ID",
+      "client": "Client",
+      "contractNumber": "Contract Number",
+      "adress": "Adress",
+      "technicienDef": "Technicien Def",
+      "date": "Date",
+      "tableDetectionTaskStatus": "Table Detection Task Status",
+      "tableDetectionComment": "Table Detection Comment",
+      "diDMTaskStatus": "Di DM Task Status",
+      "diDMComment": "Di DM Comment",
+      "detecteursPonctuelsTaskStatus": "Detecteurs Ponctuels Task Status",
+      "detecteursPonctuelsComment": "Detecteurs Ponctuels Comment",
+      "declencheurManuelsTaskStatus": "Declencheur Manuels Task Status",
+      "declencheurManuelsComment": "Declencheur Manuels Comment",
+      "tableMiseSecurityIncendieTaskStatus": "Table Mise Security Incendie Task Status",
+      "tableMiseSecurityIncendieComment": "Table Mise Security Incendie Comment",
+      "alimentationSecoursTaskStatus": "Alimentation Secours Task Status",
+      "alimentationSecoursComment": "Alimentation Secours Comment",
+      "equipementAlarmeTaskStatus": "Equipement Alarme Task Status",
+      "equipementAlarmeComment": "Equipement Alarme Comment",
+      "dasTaskStatus": "Das Task Status",
+      "dasComment": "Das Comment",
+      "arretTechniqueTaskStatus": "Arret Technique Task Status",
+      "arretTechniqueComment": "Arret Technique Comment",
+      "baiePcsTaskStatus": "Baie Pcs Task Status",
+      "baiePCScomment": "Baie PC Scomment",
+      "superviseurTaskStatus": "Superviseur Task Status",
+      "superviseurComment": "Superviseur Comment",
+      "validate": "Validate",
+      "createdBy": "Created By"
+    }
+  }
+}

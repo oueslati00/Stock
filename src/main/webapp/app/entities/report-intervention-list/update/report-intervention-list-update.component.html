@@ -1,0 +1,683 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-report-intervention-list-heading"
+        data-cy="ReportInterventionListCreateUpdateHeading"
+        jhiTranslate="stockProjectApp.reportInterventionList.home.createOrEditLabel"
+      >
+        Créer ou éditer un Report Intervention List
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="stockProjectApp.reportInterventionList.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_site" jhiTranslate="stockProjectApp.reportInterventionList.site">Site</label>
+          <input type="text" class="form-control" name="site" id="field_site" data-cy="site" formControlName="site" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_codeAgence" jhiTranslate="stockProjectApp.reportInterventionList.codeAgence"
+            >Code Agence</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="codeAgence"
+            id="field_codeAgence"
+            data-cy="codeAgence"
+            formControlName="codeAgence"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_affaireNumber" jhiTranslate="stockProjectApp.reportInterventionList.affaireNumber"
+            >Affaire Number</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="affaireNumber"
+            id="field_affaireNumber"
+            data-cy="affaireNumber"
+            formControlName="affaireNumber"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_contractNumber" jhiTranslate="stockProjectApp.reportInterventionList.contractNumber"
+            >Contract Number</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="contractNumber"
+            id="field_contractNumber"
+            data-cy="contractNumber"
+            formControlName="contractNumber"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_installationAdress" jhiTranslate="stockProjectApp.reportInterventionList.installationAdress"
+            >Installation Adress</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="installationAdress"
+            id="field_installationAdress"
+            data-cy="installationAdress"
+            formControlName="installationAdress"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_interlocuteurIntervation"
+            jhiTranslate="stockProjectApp.reportInterventionList.interlocuteurIntervation"
+            >Interlocuteur Intervation</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="interlocuteurIntervation"
+            id="field_interlocuteurIntervation"
+            data-cy="interlocuteurIntervation"
+            formControlName="interlocuteurIntervation"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tel" jhiTranslate="stockProjectApp.reportInterventionList.tel">Tel</label>
+          <input type="text" class="form-control" name="tel" id="field_tel" data-cy="tel" formControlName="tel" />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_installationSousContract"
+            jhiTranslate="stockProjectApp.reportInterventionList.installationSousContract"
+            >Installation Sous Contract</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="installationSousContract"
+            id="field_installationSousContract"
+            data-cy="installationSousContract"
+            formControlName="installationSousContract"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_installationSousGarantie"
+            jhiTranslate="stockProjectApp.reportInterventionList.installationSousGarantie"
+            >Installation Sous Garantie</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="installationSousGarantie"
+            id="field_installationSousGarantie"
+            data-cy="installationSousGarantie"
+            formControlName="installationSousGarantie"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_adressFacturation" jhiTranslate="stockProjectApp.reportInterventionList.adressFacturation"
+            >Adress Facturation</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="adressFacturation"
+            id="field_adressFacturation"
+            data-cy="adressFacturation"
+            formControlName="adressFacturation"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_interlocuteurFacturation"
+            jhiTranslate="stockProjectApp.reportInterventionList.interlocuteurFacturation"
+            >Interlocuteur Facturation</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="interlocuteurFacturation"
+            id="field_interlocuteurFacturation"
+            data-cy="interlocuteurFacturation"
+            formControlName="interlocuteurFacturation"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_conditionDePayementCheque"
+            jhiTranslate="stockProjectApp.reportInterventionList.conditionDePayementCheque"
+            >Condition De Payement Cheque</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="conditionDePayementCheque"
+            id="field_conditionDePayementCheque"
+            data-cy="conditionDePayementCheque"
+            formControlName="conditionDePayementCheque"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_conditionPayementAutre"
+            jhiTranslate="stockProjectApp.reportInterventionList.conditionPayementAutre"
+            >Condition Payement Autre</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="conditionPayementAutre"
+            id="field_conditionPayementAutre"
+            data-cy="conditionPayementAutre"
+            formControlName="conditionPayementAutre"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_conditionPayementComment"
+            jhiTranslate="stockProjectApp.reportInterventionList.conditionPayementComment"
+            >Condition Payement Comment</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="conditionPayementComment"
+            id="field_conditionPayementComment"
+            data-cy="conditionPayementComment"
+            formControlName="conditionPayementComment"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_miseEnServiceDefinitvie"
+            jhiTranslate="stockProjectApp.reportInterventionList.miseEnServiceDefinitvie"
+            >Mise En Service Definitvie</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="miseEnServiceDefinitvie"
+            id="field_miseEnServiceDefinitvie"
+            data-cy="miseEnServiceDefinitvie"
+            formControlName="miseEnServiceDefinitvie"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_miseEnServicePartielle"
+            jhiTranslate="stockProjectApp.reportInterventionList.miseEnServicePartielle"
+            >Mise En Service Partielle</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="miseEnServicePartielle"
+            id="field_miseEnServicePartielle"
+            data-cy="miseEnServicePartielle"
+            formControlName="miseEnServicePartielle"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_maintenancePreventive"
+            jhiTranslate="stockProjectApp.reportInterventionList.maintenancePreventive"
+            >Maintenance Preventive</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="maintenancePreventive"
+            id="field_maintenancePreventive"
+            data-cy="maintenancePreventive"
+            formControlName="maintenancePreventive"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_maintenanceCorrective"
+            jhiTranslate="stockProjectApp.reportInterventionList.maintenanceCorrective"
+            >Maintenance Corrective</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="maintenanceCorrective"
+            id="field_maintenanceCorrective"
+            data-cy="maintenanceCorrective"
+            formControlName="maintenanceCorrective"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_bT" jhiTranslate="stockProjectApp.reportInterventionList.bT">B T</label>
+          <input type="text" class="form-control" name="bT" id="field_bT" data-cy="bT" formControlName="bT" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_anomalieSignalee" jhiTranslate="stockProjectApp.reportInterventionList.anomalieSignalee"
+            >Anomalie Signalee</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="anomalieSignalee"
+            id="field_anomalieSignalee"
+            data-cy="anomalieSignalee"
+            formControlName="anomalieSignalee"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_interventionDate" jhiTranslate="stockProjectApp.reportInterventionList.interventionDate"
+            >Intervention Date</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_interventionDate"
+              data-cy="interventionDate"
+              type="datetime-local"
+              class="form-control"
+              name="interventionDate"
+              formControlName="interventionDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_interventionStartDate"
+            jhiTranslate="stockProjectApp.reportInterventionList.interventionStartDate"
+            >Intervention Start Date</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_interventionStartDate"
+              data-cy="interventionStartDate"
+              type="datetime-local"
+              class="form-control"
+              name="interventionStartDate"
+              formControlName="interventionStartDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_remiseServiceDate" jhiTranslate="stockProjectApp.reportInterventionList.remiseServiceDate"
+            >Remise Service Date</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_remiseServiceDate"
+              data-cy="remiseServiceDate"
+              type="datetime-local"
+              class="form-control"
+              name="remiseServiceDate"
+              formControlName="remiseServiceDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_endDate" jhiTranslate="stockProjectApp.reportInterventionList.endDate">End Date</label>
+          <div class="d-flex">
+            <input
+              id="field_endDate"
+              data-cy="endDate"
+              type="datetime-local"
+              class="form-control"
+              name="endDate"
+              formControlName="endDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_natureIntervention" jhiTranslate="stockProjectApp.reportInterventionList.natureIntervention"
+            >Nature Intervention</label
+          >
+          <textarea
+            class="form-control"
+            name="natureIntervention"
+            id="field_natureIntervention"
+            data-cy="natureIntervention"
+            formControlName="natureIntervention"
+          ></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_causeExterieurInstallation"
+            jhiTranslate="stockProjectApp.reportInterventionList.causeExterieurInstallation"
+            >Cause Exterieur Installation</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="causeExterieurInstallation"
+            id="field_causeExterieurInstallation"
+            data-cy="causeExterieurInstallation"
+            formControlName="causeExterieurInstallation"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_installationFonctionnelleApresInervention"
+            jhiTranslate="stockProjectApp.reportInterventionList.installationFonctionnelleApresInervention"
+            >Installation Fonctionnelle Apres Inervention</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="installationFonctionnelleApresInervention"
+            id="field_installationFonctionnelleApresInervention"
+            data-cy="installationFonctionnelleApresInervention"
+            formControlName="installationFonctionnelleApresInervention"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_autreInterventionsAPrevoir"
+            jhiTranslate="stockProjectApp.reportInterventionList.autreInterventionsAPrevoir"
+            >Autre Interventions A Prevoir</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="autreInterventionsAPrevoir"
+            id="field_autreInterventionsAPrevoir"
+            data-cy="autreInterventionsAPrevoir"
+            formControlName="autreInterventionsAPrevoir"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_clientApreciation" jhiTranslate="stockProjectApp.reportInterventionList.clientApreciation"
+            >Client Apreciation</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="clientApreciation"
+            id="field_clientApreciation"
+            data-cy="clientApreciation"
+            formControlName="clientApreciation"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_respectDelais" jhiTranslate="stockProjectApp.reportInterventionList.respectDelais"
+            >Respect Delais</label
+          >
+          <select
+            class="form-control"
+            name="respectDelais"
+            formControlName="respectDelais"
+            id="field_respectDelais"
+            data-cy="respectDelais"
+          >
+            <option [ngValue]="null">{{ 'stockProjectApp.EvaluationStatus.null' | translate }}</option>
+            @for (evaluationStatus of evaluationStatusValues; track $index) {
+              <option [value]="evaluationStatus">{{ 'stockProjectApp.EvaluationStatus.' + evaluationStatus | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_qualiteIntervention"
+            jhiTranslate="stockProjectApp.reportInterventionList.qualiteIntervention"
+            >Qualite Intervention</label
+          >
+          <select
+            class="form-control"
+            name="qualiteIntervention"
+            formControlName="qualiteIntervention"
+            id="field_qualiteIntervention"
+            data-cy="qualiteIntervention"
+          >
+            <option [ngValue]="null">{{ 'stockProjectApp.EvaluationStatus.null' | translate }}</option>
+            @for (evaluationStatus of evaluationStatusValues; track $index) {
+              <option [value]="evaluationStatus">{{ 'stockProjectApp.EvaluationStatus.' + evaluationStatus | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_qualiteDevoirConseil"
+            jhiTranslate="stockProjectApp.reportInterventionList.qualiteDevoirConseil"
+            >Qualite Devoir Conseil</label
+          >
+          <select
+            class="form-control"
+            name="qualiteDevoirConseil"
+            formControlName="qualiteDevoirConseil"
+            id="field_qualiteDevoirConseil"
+            data-cy="qualiteDevoirConseil"
+          >
+            <option [ngValue]="null">{{ 'stockProjectApp.EvaluationStatus.null' | translate }}</option>
+            @for (evaluationStatus of evaluationStatusValues; track $index) {
+              <option [value]="evaluationStatus">{{ 'stockProjectApp.EvaluationStatus.' + evaluationStatus | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_prestationsAchevees"
+            jhiTranslate="stockProjectApp.reportInterventionList.prestationsAchevees"
+            >Prestations Achevees</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="prestationsAchevees"
+            id="field_prestationsAchevees"
+            data-cy="prestationsAchevees"
+            formControlName="prestationsAchevees"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_devisComplentaire" jhiTranslate="stockProjectApp.reportInterventionList.devisComplentaire"
+            >Devis Complentaire</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="devisComplentaire"
+            id="field_devisComplentaire"
+            data-cy="devisComplentaire"
+            formControlName="devisComplentaire"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_technicienName" jhiTranslate="stockProjectApp.reportInterventionList.technicienName"
+            >Technicien Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="technicienName"
+            id="field_technicienName"
+            data-cy="technicienName"
+            formControlName="technicienName"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_codeTechnicien" jhiTranslate="stockProjectApp.reportInterventionList.codeTechnicien"
+            >Code Technicien</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="codeTechnicien"
+            id="field_codeTechnicien"
+            data-cy="codeTechnicien"
+            formControlName="codeTechnicien"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_validationClientName"
+            jhiTranslate="stockProjectApp.reportInterventionList.validationClientName"
+            >Validation Client Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="validationClientName"
+            id="field_validationClientName"
+            data-cy="validationClientName"
+            formControlName="validationClientName"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_validationNameFunction"
+            jhiTranslate="stockProjectApp.reportInterventionList.validationNameFunction"
+            >Validation Name Function</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="validationNameFunction"
+            id="field_validationNameFunction"
+            data-cy="validationNameFunction"
+            formControlName="validationNameFunction"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_validationClientDate"
+            jhiTranslate="stockProjectApp.reportInterventionList.validationClientDate"
+            >Validation Client Date</label
+          >
+          <div class="input-group">
+            <input
+              id="field_validationClientDate"
+              data-cy="validationClientDate"
+              type="text"
+              class="form-control"
+              name="validationClientDate"
+              ngbDatepicker
+              #validationClientDateDp="ngbDatepicker"
+              formControlName="validationClientDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="validationClientDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_bonPourCommand" jhiTranslate="stockProjectApp.reportInterventionList.bonPourCommand"
+            >Bon Pour Command</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="bonPourCommand"
+            id="field_bonPourCommand"
+            data-cy="bonPourCommand"
+            formControlName="bonPourCommand"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_createdBy" jhiTranslate="stockProjectApp.reportInterventionList.createdBy">Created By</label>
+          <input type="text" class="form-control" name="createdBy" id="field_createdBy" data-cy="createdBy" formControlName="createdBy" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_validation" jhiTranslate="stockProjectApp.reportInterventionList.validation"
+            >Validation</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="validation"
+            id="field_validation"
+            data-cy="validation"
+            formControlName="validation"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

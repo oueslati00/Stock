@@ -1,0 +1,275 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (checkList()) {
+      <div>
+        <h2 data-cy="checkListDetailsHeading"><span jhiTranslate="stockProjectApp.checkList.detail.title">Check List</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="stockProjectApp.checkList.client">Client</span></dt>
+          <dd>
+            <span>{{ checkList()!.client }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.checkList.contractNumber">Contract Number</span></dt>
+          <dd>
+            <span>{{ checkList()!.contractNumber }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.checkList.adress">Adress</span></dt>
+          <dd>
+            <span>{{ checkList()!.adress }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.checkList.technicienDef">Technicien Def</span></dt>
+          <dd>
+            <span>{{ checkList()!.technicienDef }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.checkList.date">Date</span></dt>
+          <dd>
+            <span>{{ checkList()!.date | formatMediumDatetime }}</span>
+          </dd>
+        </dl>
+        <table class="table-bordered">
+          <thead>
+            <tr>
+              <th>Taches à effectuer</th>
+              <th>Status</th>
+              <th>Commentaire</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="3" style="text-align: center">Système de détection incendie (SDI)</td>
+            </tr>
+            <tr>
+              <td>Tableau de détection incendie <br />100% à chaque visite :</td>
+              <td>
+                <dt><span jhiTranslate="stockProjectApp.checkList.tableDetectionTaskStatus">Table Detection Task Status</span></dt>
+                <dd>
+                  <span [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList()!.tableDetectionTaskStatus ?? 'null')">{{
+                    { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[checkList()!.tableDetectionTaskStatus ?? 'null']
+                  }}</span>
+                </dd>
+              </td>
+              <td>
+                <dt><span jhiTranslate="stockProjectApp.checkList.tableDetectionComment">Table Detection Comment</span></dt>
+                <dd>
+                  <span>{{ checkList()!.tableDetectionComment }}</span>
+                </dd>
+              </td>
+            </tr>
+            <tr>
+              <td>Boucles (DI/DM) 100% à chaque visite:</td>
+              <td>
+                <dt><span jhiTranslate="stockProjectApp.checkList.diDMTaskStatus">Di DM Task Status</span></dt>
+                <dd>
+                  <span [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList()!.diDMTaskStatus ?? 'null')">{{
+                    { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[checkList()!.diDMTaskStatus ?? 'null']
+                  }}</span>
+                </dd>
+              </td>
+              <td>
+                <dt><span jhiTranslate="stockProjectApp.checkList.diDMComment">Di DM Comment</span></dt>
+                <dd>
+                  <span>{{ checkList()!.diDMComment }}</span>
+                </dd>
+              </td>
+            </tr>
+            <tr>
+              <td>Détecteurs ponctuels : (50% de chaque zone à chaque visite)</td>
+              <td>
+                <dt>
+                  <span jhiTranslate="stockProjectApp.checkList.detecteursPonctuelsTaskStatus">Detecteurs Ponctuels Task Status</span>
+                </dt>
+                <dd>
+                  <span [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList()!.detecteursPonctuelsTaskStatus ?? 'null')">{{
+                    { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[
+                      checkList()!.detecteursPonctuelsTaskStatus ?? 'null'
+                    ]
+                  }}</span>
+                </dd>
+              </td>
+              <td>
+                <dt><span jhiTranslate="stockProjectApp.checkList.detecteursPonctuelsComment">Detecteurs Ponctuels Comment</span></dt>
+                <dd>
+                  <span>{{ checkList()!.detecteursPonctuelsComment }}</span>
+                </dd>
+              </td>
+            </tr>
+            <tr>
+              <td>éclencheurs manuels (50% à chaque visite</td>
+              <td>
+                <dt><span jhiTranslate="stockProjectApp.checkList.declencheurManuelsTaskStatus">Declencheur Manuels Task Status</span></dt>
+                <dd>
+                  <span [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList()!.declencheurManuelsTaskStatus ?? 'null')">{{
+                    { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[
+                      checkList()!.declencheurManuelsTaskStatus ?? 'null'
+                    ]
+                  }}</span>
+                </dd>
+              </td>
+              <td>
+                <dt><span jhiTranslate="stockProjectApp.checkList.declencheurManuelsComment">Declencheur Manuels Comment</span></dt>
+                <dd>
+                  <span>{{ checkList()!.declencheurManuelsComment }}</span>
+                </dd>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3" style="text-align: center">Système de mise en sécurité incendie (SMSI)</td>
+            </tr>
+            <tr>
+              <td>Tableau de mise en sécurité incendie (100% à chaque visite)</td>
+              <td>
+                <dt>
+                  <span jhiTranslate="stockProjectApp.checkList.tableMiseSecurityIncendieTaskStatus"
+                    >Table Mise Security Incendie Task Status</span
+                  >
+                </dt>
+                <dd>
+                  <span [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList()!.tableMiseSecurityIncendieTaskStatus ?? 'null')">{{
+                    { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[
+                      checkList()!.tableMiseSecurityIncendieTaskStatus ?? 'null'
+                    ]
+                  }}</span>
+                </dd>
+              </td>
+              <td>
+                <dt>
+                  <span jhiTranslate="stockProjectApp.checkList.tableMiseSecurityIncendieComment"
+                    >Table Mise Security Incendie Comment</span
+                  >
+                </dt>
+                <dd>
+                  <span>{{ checkList()!.tableMiseSecurityIncendieComment }}</span>
+                </dd>
+              </td>
+            </tr>
+            <tr>
+              <td>Alimentation de secours (100% à chaque visite)</td>
+              <td>
+                <dt>
+                  <span jhiTranslate="stockProjectApp.checkList.alimentationSecoursTaskStatus">Alimentation Secours Task Status</span>
+                </dt>
+                <dd>
+                  <span [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList()!.alimentationSecoursTaskStatus ?? 'null')">{{
+                    { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[
+                      checkList()!.alimentationSecoursTaskStatus ?? 'null'
+                    ]
+                  }}</span>
+                </dd>
+              </td>
+              <td>
+                <dt><span jhiTranslate="stockProjectApp.checkList.alimentationSecoursComment">Alimentation Secours Comment</span></dt>
+                <dd>
+                  <span>{{ checkList()!.alimentationSecoursComment }}</span>
+                </dd>
+              </td>
+            </tr>
+            <tr>
+              <td>Equipement d’alarme : (100% à chaque visite)</td>
+              <td>
+                <dt><span jhiTranslate="stockProjectApp.checkList.equipementAlarmeTaskStatus">Equipement Alarme Task Status</span></dt>
+                <dd>
+                  <span [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList()!.equipementAlarmeTaskStatus ?? 'null')">{{
+                    { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[
+                      checkList()!.equipementAlarmeTaskStatus ?? 'null'
+                    ]
+                  }}</span>
+                </dd>
+              </td>
+              <td>
+                <dt><span jhiTranslate="stockProjectApp.checkList.equipementAlarmeComment">Equipement Alarme Comment</span></dt>
+                <dd>
+                  <span>{{ checkList()!.equipementAlarmeComment }}</span>
+                </dd>
+              </td>
+            </tr>
+            <tr>
+              <td>Dispositifs actionnés de sécurité (DAS)</td>
+              <td>
+                <dt><span jhiTranslate="stockProjectApp.checkList.dasTaskStatus">Das Task Status</span></dt>
+                <dd>
+                  <span [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList()!.dasTaskStatus ?? 'null')">{{
+                    { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[checkList()!.dasTaskStatus ?? 'null']
+                  }}</span>
+                </dd>
+              </td>
+              <td>
+                <dt><span jhiTranslate="stockProjectApp.checkList.dasComment">Das Comment</span></dt>
+                <dd>
+                  <span>{{ checkList()!.dasComment }}</span>
+                </dd>
+              </td>
+            </tr>
+            <tr>
+              <td>Arrêts techniques</td>
+              <td>
+                <dt><span jhiTranslate="stockProjectApp.checkList.arretTechniqueTaskStatus">Arret Technique Task Status</span></dt>
+                <dd>
+                  <span [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList()!.arretTechniqueTaskStatus ?? 'null')">{{
+                    { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[checkList()!.arretTechniqueTaskStatus ?? 'null']
+                  }}</span>
+                </dd>
+              </td>
+              <td>
+                <dt><span jhiTranslate="stockProjectApp.checkList.arretTechniqueComment">Arret Technique Comment</span></dt>
+                <dd>
+                  <span>{{ checkList()!.arretTechniqueComment }}</span>
+                </dd>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3" style="text-align: center">Unité d’aide à l’exploitation (UAE)</td>
+            </tr>
+            <tr>
+              <td>Baie au PCS (100% à chaque visite)</td>
+              <td>
+                <dt><span jhiTranslate="stockProjectApp.checkList.baiePcsTaskStatus">Baie Pcs Task Status</span></dt>
+                <dd>
+                  <span [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList()!.baiePcsTaskStatus ?? 'null')">{{
+                    { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[checkList()!.baiePcsTaskStatus ?? 'null']
+                  }}</span>
+                </dd>
+              </td>
+              <td>
+                <dt><span jhiTranslate="stockProjectApp.checkList.baiePCScomment">Baie PC Scomment</span></dt>
+                <dd>
+                  <span>{{ checkList()!.baiePCScomment }}</span>
+                </dd>
+              </td>
+            </tr>
+            <tr>
+              <td>Superviseur (100% à chaque visite)</td>
+              <td>
+                <dt><span jhiTranslate="stockProjectApp.checkList.superviseurTaskStatus">Superviseur Task Status</span></dt>
+                <dd>
+                  <span [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList()!.superviseurTaskStatus ?? 'null')">{{
+                    { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[checkList()!.superviseurTaskStatus ?? 'null']
+                  }}</span>
+                </dd>
+              </td>
+              <td>
+                <dt><span jhiTranslate="stockProjectApp.checkList.superviseurComment">Superviseur Comment</span></dt>
+                <dd>
+                  <span>{{ checkList()!.superviseurComment }}</span>
+                </dd>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/check-list', checkList()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

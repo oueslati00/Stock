@@ -1,0 +1,186 @@
+{
+  "annotations": {
+    "changelogDate": "20240817123340"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "site",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "codeAgence",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "affaireNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "contractNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "installationAdress",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "interlocuteurIntervation",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tel",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "installationSousContract",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "installationSousGarantie",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "adressFacturation",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "interlocuteurFacturation",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "conditionDePayementCheque",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "conditionPayementAutre",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "conditionPayementComment",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "miseEnServiceDefinitvie",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "miseEnServicePartielle",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "maintenancePreventive",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "maintenanceCorrective",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "bT",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "anomalieSignalee",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "interventionDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "interventionStartDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "remiseServiceDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "natureIntervention",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "causeExterieurInstallation",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "installationFonctionnelleApresInervention",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "autreInterventionsAPrevoir",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "clientApreciation",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "respectDelais",
+      "fieldType": "EvaluationStatus",
+      "fieldValues": "TRES_SATISFAISANT,SATISFAISANT,PASSABLE,MEDIOCRE"
+    },
+    {
+      "fieldName": "qualiteIntervention",
+      "fieldType": "EvaluationStatus",
+      "fieldValues": "TRES_SATISFAISANT,SATISFAISANT,PASSABLE,MEDIOCRE"
+    },
+    {
+      "fieldName": "qualiteDevoirConseil",
+      "fieldType": "EvaluationStatus",
+      "fieldValues": "TRES_SATISFAISANT,SATISFAISANT,PASSABLE,MEDIOCRE"
+    },
+    {
+      "fieldName": "prestationsAchevees",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "devisComplentaire",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "technicienName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "codeTechnicien",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "validationClientName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "validationNameFunction",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "validationClientDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "bonPourCommand",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "validation",
+      "fieldType": "Boolean"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "ReportInterventionList",
+  "pagination": "pagination",
+  "relationships": [],
+  "service": "serviceImpl"
+}

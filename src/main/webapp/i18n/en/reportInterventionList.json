@@ -1,0 +1,66 @@
+{
+  "stockProjectApp": {
+    "reportInterventionList": {
+      "home": {
+        "title": "Report Intervention Lists",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Report Intervention List",
+        "createOrEditLabel": "Create or edit a Report Intervention List",
+        "search": "Search for Report Intervention List",
+        "notFound": "No Report Intervention Lists found"
+      },
+      "created": "A new Report Intervention List is created with identifier {{ param }}",
+      "updated": "A Report Intervention List is updated with identifier {{ param }}",
+      "deleted": "A Report Intervention List is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Report Intervention List {{ id }}?"
+      },
+      "detail": {
+        "title": "Report Intervention List"
+      },
+      "id": "ID",
+      "site": "Site",
+      "codeAgence": "Code Agence",
+      "affaireNumber": "Affaire Number",
+      "contractNumber": "Contract Number",
+      "installationAdress": "Installation Adress",
+      "interlocuteurIntervation": "Interlocuteur Intervation",
+      "tel": "Tel",
+      "installationSousContract": "Installation Sous Contract",
+      "installationSousGarantie": "Installation Sous Garantie",
+      "adressFacturation": "Adress Facturation",
+      "interlocuteurFacturation": "Interlocuteur Facturation",
+      "conditionDePayementCheque": "Condition De Payement Cheque",
+      "conditionPayementAutre": "Condition Payement Autre",
+      "conditionPayementComment": "Condition Payement Comment",
+      "miseEnServiceDefinitvie": "Mise En Service Definitvie",
+      "miseEnServicePartielle": "Mise En Service Partielle",
+      "maintenancePreventive": "Maintenance Preventive",
+      "maintenanceCorrective": "Maintenance Corrective",
+      "bT": "B T",
+      "anomalieSignalee": "Anomalie Signalee",
+      "interventionDate": "Intervention Date",
+      "interventionStartDate": "Intervention Start Date",
+      "remiseServiceDate": "Remise Service Date",
+      "endDate": "End Date",
+      "natureIntervention": "Nature Intervention",
+      "causeExterieurInstallation": "Cause Exterieur Installation",
+      "installationFonctionnelleApresInervention": "Installation Fonctionnelle Apres Inervention",
+      "autreInterventionsAPrevoir": "Autre Interventions A Prevoir",
+      "clientApreciation": "Client Apreciation",
+      "respectDelais": "Respect Delais",
+      "qualiteIntervention": "Qualite Intervention",
+      "qualiteDevoirConseil": "Qualite Devoir Conseil",
+      "prestationsAchevees": "Prestations Achevees",
+      "devisComplentaire": "Devis Complentaire",
+      "technicienName": "Technicien Name",
+      "codeTechnicien": "Code Technicien",
+      "validationClientName": "Validation Client Name",
+      "validationNameFunction": "Validation Name Function",
+      "validationClientDate": "Validation Client Date",
+      "bonPourCommand": "Bon Pour Command",
+      "createdBy": "Created By",
+      "validation": "Validation"
+    }
+  }
+}

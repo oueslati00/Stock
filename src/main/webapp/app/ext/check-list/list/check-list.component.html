@@ -1,0 +1,192 @@
+<div>
+  <h2 id="page-heading" data-cy="CheckListHeading">
+    <span jhiTranslate="stockProjectApp.checkList.home.title">CheckLists</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="stockProjectApp.checkList.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-check-list"
+        [routerLink]="['/check-list/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span class="hidden-sm-down" jhiTranslate="stockProjectApp.checkList.home.createLabel">Créer un nouveau Check List</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <form name="searchForm" class="row row-cols-sm-auto align-items-center">
+    <div class="col-sm-12">
+      <div class="input-group w-100 mt-3">
+        <label class="visually-hidden" for="currentSearch" jhiTranslate="stockProjectApp.checkList.home.search"
+          >Recherche pour Check List</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="currentSearch"
+          id="currentSearch"
+          name="currentSearch"
+          placeholder="{{ 'stockProjectApp.checkList.home.search' | translate }}"
+        />
+
+        <button class="btn btn-info" (click)="search(currentSearch)">
+          <fa-icon icon="search"></fa-icon>
+        </button>
+
+        @if (currentSearch) {
+          <button class="btn btn-danger" (click)="search('')">
+            <fa-icon icon="trash-alt"></fa-icon>
+          </button>
+        }
+      </div>
+    </div>
+  </form>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  @if (checkLists?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="stockProjectApp.checkList.home.notFound">Aucun Check List trouvé</span>
+    </div>
+  }
+
+  @if (checkLists && checkLists.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="createdBy">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.createdBy">Created By</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="client">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.client">Client</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="contractNumber">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.contractNumber">Contract Number</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="adress">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.adress">Adress</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="technicienDef">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.technicienDef">Technicien Def</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="date">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.date">Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="validate">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.validate">Validate</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (checkList of checkLists; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/check-list', checkList.id, 'view']">{{ checkList.id }}</a>
+              </td>
+              <td>{{ checkList.createdBy }}</td>
+              <td>{{ checkList.client }}</td>
+              <td>{{ checkList.contractNumber }}</td>
+              <td>{{ checkList.adress }}</td>
+              <td>{{ checkList.technicienDef }}</td>
+              <td>{{ checkList.date | formatMediumDatetime }}</td>
+
+              <td class="text-end">
+                <div class="btn-group">
+                  @if (checkList.validate) {
+                    <a class="btn btn-danger btn-sm" (click)="validate(checkList, false)"> Not valid </a>
+                  } @else {
+                    <a class="btn btn-success btn-sm" (click)="validate(checkList, true)"> Valid </a>
+                  }
+                  <a [routerLink]="['/check-list', checkList.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+                  </a>
+
+                  <a [routerLink]="['/check-list', checkList.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(checkList)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (checkLists && checkLists.length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

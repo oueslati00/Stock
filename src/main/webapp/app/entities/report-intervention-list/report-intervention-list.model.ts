@@ -1,0 +1,50 @@
+import dayjs from 'dayjs/esm';
+import { EvaluationStatus } from 'app/entities/enumerations/evaluation-status.model';
+
+export interface IReportInterventionList {
+  id: number;
+  site?: string | null;
+  codeAgence?: string | null;
+  affaireNumber?: string | null;
+  contractNumber?: string | null;
+  installationAdress?: string | null;
+  interlocuteurIntervation?: string | null;
+  tel?: string | null;
+  installationSousContract?: boolean | null;
+  installationSousGarantie?: boolean | null;
+  adressFacturation?: string | null;
+  interlocuteurFacturation?: string | null;
+  conditionDePayementCheque?: boolean | null;
+  conditionPayementAutre?: boolean | null;
+  conditionPayementComment?: string | null;
+  miseEnServiceDefinitvie?: boolean | null;
+  miseEnServicePartielle?: boolean | null;
+  maintenancePreventive?: boolean | null;
+  maintenanceCorrective?: boolean | null;
+  bT?: string | null;
+  anomalieSignalee?: string | null;
+  interventionDate?: dayjs.Dayjs | null;
+  interventionStartDate?: dayjs.Dayjs | null;
+  remiseServiceDate?: dayjs.Dayjs | null;
+  endDate?: dayjs.Dayjs | null;
+  natureIntervention?: string | null;
+  causeExterieurInstallation?: boolean | null;
+  installationFonctionnelleApresInervention?: boolean | null;
+  autreInterventionsAPrevoir?: string | null;
+  clientApreciation?: string | null;
+  respectDelais?: keyof typeof EvaluationStatus | null;
+  qualiteIntervention?: keyof typeof EvaluationStatus | null;
+  qualiteDevoirConseil?: keyof typeof EvaluationStatus | null;
+  prestationsAchevees?: boolean | null;
+  devisComplentaire?: boolean | null;
+  technicienName?: string | null;
+  codeTechnicien?: string | null;
+  validationClientName?: string | null;
+  validationNameFunction?: string | null;
+  validationClientDate?: dayjs.Dayjs | null;
+  bonPourCommand?: boolean | null;
+  createdBy?: string | null;
+  validation?: boolean | null;
+}
+
+export type NewReportInterventionList = Omit<IReportInterventionList, 'id'> & { id: null };

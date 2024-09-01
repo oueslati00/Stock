@@ -1,0 +1,113 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-product-heading" data-cy="ProductCreateUpdateHeading" jhiTranslate="stockProjectApp.product.home.createOrEditLabel">
+        Créer ou éditer un Product
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="stockProjectApp.product.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_qrCode" jhiTranslate="stockProjectApp.product.qrCode">Qr Code</label>
+          <input type="text" class="form-control" name="qrCode" id="field_qrCode" data-cy="qrCode" formControlName="qrCode" />
+          @if (editForm.get('qrCode')!.invalid && (editForm.get('qrCode')!.dirty || editForm.get('qrCode')!.touched)) {
+            <div>
+              @if (editForm.get('qrCode')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Ce champ est obligatoire.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_name" jhiTranslate="stockProjectApp.product.name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+        <div>Test Web Socket here!!!</div>
+        @for (activity of image; track $index) {
+          <div>
+            <img [src]="'data:image/png;base64,' + activity.image" style="max-height: 30px" alt="product" />
+            <div>{{ activity.codeQR }}</div>
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_imageData" jhiTranslate="stockProjectApp.product.imageData">Image Data</label>
+          <div>
+            @if (editForm.get('imageData')!.value) {
+              <img
+                [src]="'data:' + editForm.get('imageDataContentType')!.value + ';base64,' + editForm.get('imageData')!.value"
+                style="max-height: 100px"
+                alt="product"
+              />
+            }
+            @if (editForm.get('imageData')!.value) {
+              <div class="form-text text-danger clearfix">
+                <span class="pull-start"
+                  >{{ editForm.get('imageDataContentType')!.value }}, {{ byteSize(editForm.get('imageData')!.value!) }}</span
+                >
+                <button
+                  type="button"
+                  (click)="clearInputImage('imageData', 'imageDataContentType', 'file_imageData')"
+                  class="btn btn-secondary btn-xs pull-end"
+                >
+                  <fa-icon icon="times"></fa-icon>
+                </button>
+              </div>
+            }
+            <input
+              type="file"
+              id="file_imageData"
+              data-cy="imageData"
+              (change)="setFileData($event, 'imageData', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="imageData" id="field_imageData" data-cy="imageData" formControlName="imageData" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="imageDataContentType"
+            id="field_imageDataContentType"
+            formControlName="imageDataContentType"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_imageUrl" jhiTranslate="stockProjectApp.product.imageUrl">Image Url</label>
+          <input type="text" class="form-control" name="imageUrl" id="field_imageUrl" data-cy="imageUrl" formControlName="imageUrl" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_qT" jhiTranslate="stockProjectApp.product.qT">Q T</label>
+          <input type="number" class="form-control" name="qT" id="field_qT" data-cy="qT" formControlName="qT" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+{
+  "annotations": {
+    "changelogDate": "20240811231130"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "entityTableName": "Demand",
+  "fields": [
+    {
+      "fieldName": "qT",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "demandBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "demandDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Status",
+      "fieldValues": "APPROVED,REJECTED,IN_PROGRESS"
+    },
+    {
+      "fieldName": "validate",
+      "fieldType": "Boolean"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Demand",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "product",
+      "relationshipName": "name",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

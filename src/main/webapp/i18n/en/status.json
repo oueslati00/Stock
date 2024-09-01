@@ -1,0 +1,10 @@
+{
+  "stockProjectApp": {
+    "Status": {
+      "null": "",
+      "APPROVED": "APPROVED",
+      "REJECTED": "REJECTED",
+      "IN_PROGRESS": "IN_PROGRESS"
+    }
+  }
+}

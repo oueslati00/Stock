@@ -1,0 +1,10 @@
+{
+  "stockProjectApp": {
+    "TaskStatus": {
+      "null": "",
+      "INSPECTED": "INSPECTED",
+      "REPAIRED": "REPAIRED",
+      "PRD": "PRD"
+    }
+  }
+}

@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (demand()) {
+      <div>
+        <h2 data-cy="demandDetailsHeading"><span jhiTranslate="stockProjectApp.demand.detail.title">Demand</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ demand()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.demand.qT">Q T</span></dt>
+          <dd>
+            <span>{{ demand()!.qT }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.demand.demandBy">Demand By</span></dt>
+          <dd>
+            <span>{{ demand()!.demandBy }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.demand.demandDate">Demand Date</span></dt>
+          <dd>
+            <span>{{ demand()!.demandDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.demand.status">Status</span></dt>
+          <dd>
+            <span [jhiTranslate]="'stockProjectApp.Status.' + (demand()!.status ?? 'null')">{{
+              { null: '', APPROVED: 'APPROVED', REJECTED: 'REJECTED', IN_PROGRESS: 'IN_PROGRESS' }[demand()!.status ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.demand.validate">Validate</span></dt>
+          <dd>
+            <span>{{ demand()!.validate }}</span>
+          </dd>
+          <dt><span jhiTranslate="stockProjectApp.demand.name">Name</span></dt>
+          <dd>
+            @if (demand()!.name) {
+              <div>
+                <a [routerLink]="['/product', demand()!.name?.id, 'view']">{{ demand()!.name?.name }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/demand', demand()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

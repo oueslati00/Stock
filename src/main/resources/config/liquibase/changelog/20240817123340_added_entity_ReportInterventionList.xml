@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity ReportInterventionList.
+    -->
+    <changeSet id="20240817123340-6" author="jhipster">
+        <createTable tableName="report_intervention_list">
+            <column name="id" type="bigint" autoIncrement="true" startWith="1500">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="site" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="code_agence" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="affaire_number" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="contract_number" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="installation_adress" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="interlocuteur_intervation" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="tel" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="installation_sous_contract" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="installation_sous_garantie" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="adress_facturation" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="interlocuteur_facturation" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="condition_de_payement_cheque" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="condition_payement_autre" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="condition_payement_comment" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="mise_en_service_definitvie" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="mise_en_service_partielle" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="maintenance_preventive" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="maintenance_corrective" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="b_t" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="anomalie_signalee" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="intervention_date" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="intervention_start_date" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="remise_service_date" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="end_date" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="nature_intervention" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="cause_exterieur_installation" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="installation_fonctionnelle_apres_inervention" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="autre_interventions_a_prevoir" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="client_apreciation" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="respect_delais" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="qualite_intervention" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="qualite_devoir_conseil" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="prestations_achevees" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="devis_complentaire" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="technicien_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="code_technicien" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="validation_client_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="validation_name_function" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="validation_client_date" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="bon_pour_command" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="created_by" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="validation" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+        <dropDefaultValue tableName="report_intervention_list" columnName="intervention_date" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="report_intervention_list" columnName="intervention_start_date" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="report_intervention_list" columnName="remise_service_date" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="report_intervention_list" columnName="end_date" columnDataType="${datetimeType}"/>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20240817123340-6-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/report_intervention_list.csv"
+                  separator=";"
+                  tableName="report_intervention_list"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="site" type="string"/>
+            <column name="code_agence" type="string"/>
+            <column name="affaire_number" type="string"/>
+            <column name="contract_number" type="string"/>
+            <column name="installation_adress" type="string"/>
+            <column name="interlocuteur_intervation" type="string"/>
+            <column name="tel" type="string"/>
+            <column name="installation_sous_contract" type="boolean"/>
+            <column name="installation_sous_garantie" type="boolean"/>
+            <column name="adress_facturation" type="string"/>
+            <column name="interlocuteur_facturation" type="string"/>
+            <column name="condition_de_payement_cheque" type="boolean"/>
+            <column name="condition_payement_autre" type="boolean"/>
+            <column name="condition_payement_comment" type="string"/>
+            <column name="mise_en_service_definitvie" type="boolean"/>
+            <column name="mise_en_service_partielle" type="boolean"/>
+            <column name="maintenance_preventive" type="boolean"/>
+            <column name="maintenance_corrective" type="boolean"/>
+            <column name="b_t" type="string"/>
+            <column name="anomalie_signalee" type="string"/>
+            <column name="intervention_date" type="date"/>
+            <column name="intervention_start_date" type="date"/>
+            <column name="remise_service_date" type="date"/>
+            <column name="end_date" type="date"/>
+            <column name="nature_intervention" type="clob"/>
+            <column name="cause_exterieur_installation" type="boolean"/>
+            <column name="installation_fonctionnelle_apres_inervention" type="boolean"/>
+            <column name="autre_interventions_a_prevoir" type="string"/>
+            <column name="client_apreciation" type="string"/>
+            <column name="respect_delais" type="string"/>
+            <column name="qualite_intervention" type="string"/>
+            <column name="qualite_devoir_conseil" type="string"/>
+            <column name="prestations_achevees" type="boolean"/>
+            <column name="devis_complentaire" type="boolean"/>
+            <column name="technicien_name" type="string"/>
+            <column name="code_technicien" type="string"/>
+            <column name="validation_client_name" type="string"/>
+            <column name="validation_name_function" type="string"/>
+            <column name="validation_client_date" type="date"/>
+            <column name="bon_pour_command" type="boolean"/>
+            <column name="created_by" type="string"/>
+            <column name="validation" type="boolean"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

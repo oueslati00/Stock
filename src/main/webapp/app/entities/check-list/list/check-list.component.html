@@ -1,0 +1,420 @@
+<div>
+  <h2 id="page-heading" data-cy="CheckListHeading">
+    <span jhiTranslate="stockProjectApp.checkList.home.title">CheckLists</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="stockProjectApp.checkList.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-check-list"
+        [routerLink]="['/check-list/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span class="hidden-sm-down" jhiTranslate="stockProjectApp.checkList.home.createLabel">Créer un nouveau Check List</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <form name="searchForm" class="row row-cols-sm-auto align-items-center">
+    <div class="col-sm-12">
+      <div class="input-group w-100 mt-3">
+        <label class="visually-hidden" for="currentSearch" jhiTranslate="stockProjectApp.checkList.home.search"
+          >Recherche pour Check List</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="currentSearch"
+          id="currentSearch"
+          name="currentSearch"
+          placeholder="{{ 'stockProjectApp.checkList.home.search' | translate }}"
+        />
+
+        <button class="btn btn-info" (click)="search(currentSearch)">
+          <fa-icon icon="search"></fa-icon>
+        </button>
+
+        @if (currentSearch) {
+          <button class="btn btn-danger" (click)="search('')">
+            <fa-icon icon="trash-alt"></fa-icon>
+          </button>
+        }
+      </div>
+    </div>
+  </form>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  @if (checkLists?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="stockProjectApp.checkList.home.notFound">Aucun Check List trouvé</span>
+    </div>
+  }
+
+  @if (checkLists && checkLists.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="client">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.client">Client</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="contractNumber">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.contractNumber">Contract Number</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="adress">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.adress">Adress</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="technicienDef">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.technicienDef">Technicien Def</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="date">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.date">Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tableDetectionTaskStatus">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.tableDetectionTaskStatus">Table Detection Task Status</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tableDetectionComment">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.tableDetectionComment">Table Detection Comment</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="diDMTaskStatus">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.diDMTaskStatus">Di DM Task Status</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="diDMComment">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.diDMComment">Di DM Comment</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="detecteursPonctuelsTaskStatus">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.detecteursPonctuelsTaskStatus">Detecteurs Ponctuels Task Status</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="detecteursPonctuelsComment">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.detecteursPonctuelsComment">Detecteurs Ponctuels Comment</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="declencheurManuelsTaskStatus">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.declencheurManuelsTaskStatus">Declencheur Manuels Task Status</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="declencheurManuelsComment">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.declencheurManuelsComment">Declencheur Manuels Comment</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tableMiseSecurityIncendieTaskStatus">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.tableMiseSecurityIncendieTaskStatus"
+                  >Table Mise Security Incendie Task Status</span
+                >
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tableMiseSecurityIncendieComment">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.tableMiseSecurityIncendieComment">Table Mise Security Incendie Comment</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="alimentationSecoursTaskStatus">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.alimentationSecoursTaskStatus">Alimentation Secours Task Status</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="alimentationSecoursComment">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.alimentationSecoursComment">Alimentation Secours Comment</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="equipementAlarmeTaskStatus">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.equipementAlarmeTaskStatus">Equipement Alarme Task Status</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="equipementAlarmeComment">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.equipementAlarmeComment">Equipement Alarme Comment</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dasTaskStatus">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.dasTaskStatus">Das Task Status</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dasComment">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.dasComment">Das Comment</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="arretTechniqueTaskStatus">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.arretTechniqueTaskStatus">Arret Technique Task Status</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="arretTechniqueComment">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.arretTechniqueComment">Arret Technique Comment</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="baiePcsTaskStatus">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.baiePcsTaskStatus">Baie Pcs Task Status</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="baiePCScomment">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.baiePCScomment">Baie PC Scomment</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="superviseurTaskStatus">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.superviseurTaskStatus">Superviseur Task Status</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="superviseurComment">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.superviseurComment">Superviseur Comment</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="validate">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.validate">Validate</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="createdBy">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.checkList.createdBy">Created By</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (checkList of checkLists; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/check-list', checkList.id, 'view']">{{ checkList.id }}</a>
+              </td>
+              <td>{{ checkList.client }}</td>
+              <td>{{ checkList.contractNumber }}</td>
+              <td>{{ checkList.adress }}</td>
+              <td>{{ checkList.technicienDef }}</td>
+              <td>{{ checkList.date | formatMediumDatetime }}</td>
+              <td [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList.tableDetectionTaskStatus ?? 'null')">
+                {{ { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[checkList.tableDetectionTaskStatus ?? 'null'] }}
+              </td>
+              <td>{{ checkList.tableDetectionComment }}</td>
+              <td [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList.diDMTaskStatus ?? 'null')">
+                {{ { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[checkList.diDMTaskStatus ?? 'null'] }}
+              </td>
+              <td>{{ checkList.diDMComment }}</td>
+              <td [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList.detecteursPonctuelsTaskStatus ?? 'null')">
+                {{
+                  { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[checkList.detecteursPonctuelsTaskStatus ?? 'null']
+                }}
+              </td>
+              <td>{{ checkList.detecteursPonctuelsComment }}</td>
+              <td [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList.declencheurManuelsTaskStatus ?? 'null')">
+                {{
+                  { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[checkList.declencheurManuelsTaskStatus ?? 'null']
+                }}
+              </td>
+              <td>{{ checkList.declencheurManuelsComment }}</td>
+              <td [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList.tableMiseSecurityIncendieTaskStatus ?? 'null')">
+                {{
+                  { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[
+                    checkList.tableMiseSecurityIncendieTaskStatus ?? 'null'
+                  ]
+                }}
+              </td>
+              <td>{{ checkList.tableMiseSecurityIncendieComment }}</td>
+              <td [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList.alimentationSecoursTaskStatus ?? 'null')">
+                {{
+                  { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[checkList.alimentationSecoursTaskStatus ?? 'null']
+                }}
+              </td>
+              <td>{{ checkList.alimentationSecoursComment }}</td>
+              <td [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList.equipementAlarmeTaskStatus ?? 'null')">
+                {{ { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[checkList.equipementAlarmeTaskStatus ?? 'null'] }}
+              </td>
+              <td>{{ checkList.equipementAlarmeComment }}</td>
+              <td [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList.dasTaskStatus ?? 'null')">
+                {{ { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[checkList.dasTaskStatus ?? 'null'] }}
+              </td>
+              <td>{{ checkList.dasComment }}</td>
+              <td [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList.arretTechniqueTaskStatus ?? 'null')">
+                {{ { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[checkList.arretTechniqueTaskStatus ?? 'null'] }}
+              </td>
+              <td>{{ checkList.arretTechniqueComment }}</td>
+              <td [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList.baiePcsTaskStatus ?? 'null')">
+                {{ { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[checkList.baiePcsTaskStatus ?? 'null'] }}
+              </td>
+              <td>{{ checkList.baiePCScomment }}</td>
+              <td [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList.superviseurTaskStatus ?? 'null')">
+                {{ { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[checkList.superviseurTaskStatus ?? 'null'] }}
+              </td>
+              <td>{{ checkList.superviseurComment }}</td>
+              <td>{{ checkList.validate }}</td>
+              <td>{{ checkList.createdBy }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/check-list', checkList.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+                  </a>
+
+                  <a [routerLink]="['/check-list', checkList.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(checkList)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (checkLists && checkLists.length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

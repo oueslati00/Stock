@@ -1,0 +1,118 @@
+entity Product(Product){
+        qrCode String required
+        name String
+        imageData ImageBlob
+        imageUrl String
+        QT Integer
+}
+
+enum Status {
+    APPROVED,
+    REJECTED,
+    IN_PROGRESS
+}
+entity Demand(Demand){
+    QT Integer
+    demandBy String
+    demandDate Instant
+    status Status
+    validate Boolean
+}
+enum TaskStatus{
+    INSPECTED,
+    REPAIRED,
+    PRD
+}
+entity CheckList{
+    client String
+    contractNumber String
+    adress String,
+    technicienDef String
+    date Instant,
+    tableDetectionTaskStatus TaskStatus,
+    tableDetectionComment TextBlob,
+    diDMTaskStatus TaskStatus,
+    diDMComment TextBlob,
+    detecteursPonctuelsTaskStatus TaskStatus,
+    detecteursPonctuelsComment TextBlob,
+    declencheurManuelsTaskStatus TaskStatus,
+    declencheurManuelsComment TextBlob,
+    tableMiseSecurityIncendieTaskStatus TaskStatus,
+    tableMiseSecurityIncendieComment TextBlob,
+    alimentationSecoursTaskStatus TaskStatus,
+    alimentationSecoursComment TextBlob
+    equipementAlarmeTaskStatus TaskStatus,
+    equipementAlarmeComment TextBlob,
+    dasTaskStatus TaskStatus,
+    dasComment TextBlob,
+    arretTechniqueTaskStatus TaskStatus,
+    arretTechniqueComment TextBlob,
+    baiePcsTaskStatus TaskStatus,
+    baiePCScomment TextBlob,
+    superviseurTaskStatus TaskStatus,
+    superviseurComment TextBlob
+    validate Boolean
+    createdBy String
+}
+
+entity ReportInterventionList{
+    site String,
+    codeAgence String,
+    affaireNumber String,
+    contractNumber String,
+    installationAdress String,
+    interlocuteurIntervation String,
+    tel String,
+    installationSousContract Boolean,
+    installationSousGarantie Boolean,
+    adressFacturation String,
+    interlocuteurFacturation String,
+    conditionDePayementCheque Boolean,
+    conditionPayementAutre Boolean,
+    conditionPayementComment String,
+    miseEnServiceDefinitvie Boolean,
+    miseEnServicePartielle Boolean,
+    maintenancePreventive Boolean,
+    maintenanceCorrective Boolean,
+    BT String,
+    anomalieSignalee String,
+    interventionDate Instant,
+    interventionStartDate Instant,
+    remiseServiceDate Instant,
+    endDate Instant,
+    natureIntervention TextBlob,
+    causeExterieurInstallation Boolean,
+    installationFonctionnelleApresInervention Boolean,
+    autreInterventionsAPrevoir String,
+    clientApreciation String,
+    respectDelais EvaluationStatus,
+    qualiteIntervention EvaluationStatus,
+    qualiteDevoirConseil EvaluationStatus,
+    prestationsAchevees Boolean,
+    devisComplentaire Boolean,
+    technicienName String,
+    codeTechnicien String,
+    validationClientName String,
+    validationNameFunction String,
+    validationClientDate LocalDate,
+    bonPourCommand Boolean
+    createdBy String
+    validation Boolean
+
+}
+
+enum EvaluationStatus{
+    TRES_SATISFAISANT,
+    SATISFAISANT,
+    PASSABLE,
+    MEDIOCRE
+}
+
+relationship ManyToOne{
+     Demand{name(name)} to Product
+}
+
+dto * with mapstruct
+paginate * with pagination
+service * with serviceImpl
+filter *

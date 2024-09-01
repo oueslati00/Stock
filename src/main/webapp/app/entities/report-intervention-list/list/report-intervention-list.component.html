@@ -1,0 +1,528 @@
+<div>
+  <h2 id="page-heading" data-cy="ReportInterventionListHeading">
+    <span jhiTranslate="stockProjectApp.reportInterventionList.home.title">ReportInterventionLists</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="stockProjectApp.reportInterventionList.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-report-intervention-list"
+        [routerLink]="['/report-intervention-list/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span class="hidden-sm-down" jhiTranslate="stockProjectApp.reportInterventionList.home.createLabel"
+          >Créer un nouveau Report Intervention List</span
+        >
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <form name="searchForm" class="row row-cols-sm-auto align-items-center">
+    <div class="col-sm-12">
+      <div class="input-group w-100 mt-3">
+        <label class="visually-hidden" for="currentSearch" jhiTranslate="stockProjectApp.reportInterventionList.home.search"
+          >Recherche pour Report Intervention List</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="currentSearch"
+          id="currentSearch"
+          name="currentSearch"
+          placeholder="{{ 'stockProjectApp.reportInterventionList.home.search' | translate }}"
+        />
+
+        <button class="btn btn-info" (click)="search(currentSearch)">
+          <fa-icon icon="search"></fa-icon>
+        </button>
+
+        @if (currentSearch) {
+          <button class="btn btn-danger" (click)="search('')">
+            <fa-icon icon="trash-alt"></fa-icon>
+          </button>
+        }
+      </div>
+    </div>
+  </form>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  @if (reportInterventionLists?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="stockProjectApp.reportInterventionList.home.notFound">Aucun Report Intervention List trouvé</span>
+    </div>
+  }
+
+  @if (reportInterventionLists && reportInterventionLists.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="site">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.site">Site</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeAgence">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.codeAgence">Code Agence</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="affaireNumber">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.affaireNumber">Affaire Number</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="contractNumber">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.contractNumber">Contract Number</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="installationAdress">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.installationAdress">Installation Adress</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="interlocuteurIntervation">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.interlocuteurIntervation">Interlocuteur Intervation</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tel">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.tel">Tel</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="installationSousContract">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.installationSousContract">Installation Sous Contract</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="installationSousGarantie">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.installationSousGarantie">Installation Sous Garantie</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="adressFacturation">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.adressFacturation">Adress Facturation</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="interlocuteurFacturation">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.interlocuteurFacturation">Interlocuteur Facturation</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="conditionDePayementCheque">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.conditionDePayementCheque">Condition De Payement Cheque</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="conditionPayementAutre">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.conditionPayementAutre">Condition Payement Autre</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="conditionPayementComment">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.conditionPayementComment">Condition Payement Comment</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="miseEnServiceDefinitvie">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.miseEnServiceDefinitvie">Mise En Service Definitvie</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="miseEnServicePartielle">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.miseEnServicePartielle">Mise En Service Partielle</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="maintenancePreventive">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.maintenancePreventive">Maintenance Preventive</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="maintenanceCorrective">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.maintenanceCorrective">Maintenance Corrective</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="bT">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.bT">B T</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="anomalieSignalee">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.anomalieSignalee">Anomalie Signalee</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="interventionDate">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.interventionDate">Intervention Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="interventionStartDate">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.interventionStartDate">Intervention Start Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="remiseServiceDate">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.remiseServiceDate">Remise Service Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="endDate">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.endDate">End Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="natureIntervention">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.natureIntervention">Nature Intervention</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="causeExterieurInstallation">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.causeExterieurInstallation">Cause Exterieur Installation</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="installationFonctionnelleApresInervention">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.installationFonctionnelleApresInervention"
+                  >Installation Fonctionnelle Apres Inervention</span
+                >
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="autreInterventionsAPrevoir">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.autreInterventionsAPrevoir">Autre Interventions A Prevoir</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="clientApreciation">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.clientApreciation">Client Apreciation</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="respectDelais">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.respectDelais">Respect Delais</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="qualiteIntervention">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.qualiteIntervention">Qualite Intervention</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="qualiteDevoirConseil">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.qualiteDevoirConseil">Qualite Devoir Conseil</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="prestationsAchevees">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.prestationsAchevees">Prestations Achevees</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="devisComplentaire">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.devisComplentaire">Devis Complentaire</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="technicienName">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.technicienName">Technicien Name</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeTechnicien">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.codeTechnicien">Code Technicien</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="validationClientName">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.validationClientName">Validation Client Name</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="validationNameFunction">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.validationNameFunction">Validation Name Function</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="validationClientDate">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.validationClientDate">Validation Client Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="bonPourCommand">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.bonPourCommand">Bon Pour Command</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="createdBy">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.createdBy">Created By</span>
+                @if (!currentSearch) {
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                }
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="validation">
+              <div class="d-flex">
+                <span jhiTranslate="stockProjectApp.reportInterventionList.validation">Validation</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (reportInterventionList of reportInterventionLists; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/report-intervention-list', reportInterventionList.id, 'view']">{{ reportInterventionList.id }}</a>
+              </td>
+              <td>{{ reportInterventionList.site }}</td>
+              <td>{{ reportInterventionList.codeAgence }}</td>
+              <td>{{ reportInterventionList.affaireNumber }}</td>
+              <td>{{ reportInterventionList.contractNumber }}</td>
+              <td>{{ reportInterventionList.installationAdress }}</td>
+              <td>{{ reportInterventionList.interlocuteurIntervation }}</td>
+              <td>{{ reportInterventionList.tel }}</td>
+              <td>{{ reportInterventionList.installationSousContract }}</td>
+              <td>{{ reportInterventionList.installationSousGarantie }}</td>
+              <td>{{ reportInterventionList.adressFacturation }}</td>
+              <td>{{ reportInterventionList.interlocuteurFacturation }}</td>
+              <td>{{ reportInterventionList.conditionDePayementCheque }}</td>
+              <td>{{ reportInterventionList.conditionPayementAutre }}</td>
+              <td>{{ reportInterventionList.conditionPayementComment }}</td>
+              <td>{{ reportInterventionList.miseEnServiceDefinitvie }}</td>
+              <td>{{ reportInterventionList.miseEnServicePartielle }}</td>
+              <td>{{ reportInterventionList.maintenancePreventive }}</td>
+              <td>{{ reportInterventionList.maintenanceCorrective }}</td>
+              <td>{{ reportInterventionList.bT }}</td>
+              <td>{{ reportInterventionList.anomalieSignalee }}</td>
+              <td>{{ reportInterventionList.interventionDate | formatMediumDatetime }}</td>
+              <td>{{ reportInterventionList.interventionStartDate | formatMediumDatetime }}</td>
+              <td>{{ reportInterventionList.remiseServiceDate | formatMediumDatetime }}</td>
+              <td>{{ reportInterventionList.endDate | formatMediumDatetime }}</td>
+              <td>{{ reportInterventionList.natureIntervention }}</td>
+              <td>{{ reportInterventionList.causeExterieurInstallation }}</td>
+              <td>{{ reportInterventionList.installationFonctionnelleApresInervention }}</td>
+              <td>{{ reportInterventionList.autreInterventionsAPrevoir }}</td>
+              <td>{{ reportInterventionList.clientApreciation }}</td>
+              <td [jhiTranslate]="'stockProjectApp.EvaluationStatus.' + (reportInterventionList.respectDelais ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    TRES_SATISFAISANT: 'TRES_SATISFAISANT',
+                    SATISFAISANT: 'SATISFAISANT',
+                    PASSABLE: 'PASSABLE',
+                    MEDIOCRE: 'MEDIOCRE',
+                  }[reportInterventionList.respectDelais ?? 'null']
+                }}
+              </td>
+              <td [jhiTranslate]="'stockProjectApp.EvaluationStatus.' + (reportInterventionList.qualiteIntervention ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    TRES_SATISFAISANT: 'TRES_SATISFAISANT',
+                    SATISFAISANT: 'SATISFAISANT',
+                    PASSABLE: 'PASSABLE',
+                    MEDIOCRE: 'MEDIOCRE',
+                  }[reportInterventionList.qualiteIntervention ?? 'null']
+                }}
+              </td>
+              <td [jhiTranslate]="'stockProjectApp.EvaluationStatus.' + (reportInterventionList.qualiteDevoirConseil ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    TRES_SATISFAISANT: 'TRES_SATISFAISANT',
+                    SATISFAISANT: 'SATISFAISANT',
+                    PASSABLE: 'PASSABLE',
+                    MEDIOCRE: 'MEDIOCRE',
+                  }[reportInterventionList.qualiteDevoirConseil ?? 'null']
+                }}
+              </td>
+              <td>{{ reportInterventionList.prestationsAchevees }}</td>
+              <td>{{ reportInterventionList.devisComplentaire }}</td>
+              <td>{{ reportInterventionList.technicienName }}</td>
+              <td>{{ reportInterventionList.codeTechnicien }}</td>
+              <td>{{ reportInterventionList.validationClientName }}</td>
+              <td>{{ reportInterventionList.validationNameFunction }}</td>
+              <td>{{ reportInterventionList.validationClientDate | formatMediumDate }}</td>
+              <td>{{ reportInterventionList.bonPourCommand }}</td>
+              <td>{{ reportInterventionList.createdBy }}</td>
+              <td>{{ reportInterventionList.validation }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/report-intervention-list', reportInterventionList.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/report-intervention-list', reportInterventionList.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(reportInterventionList)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (reportInterventionLists && reportInterventionLists.length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

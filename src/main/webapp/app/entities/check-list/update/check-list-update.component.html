@@ -1,0 +1,460 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-check-list-heading"
+        data-cy="CheckListCreateUpdateHeading"
+        jhiTranslate="stockProjectApp.checkList.home.createOrEditLabel"
+      >
+        Créer ou éditer un Check List
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="stockProjectApp.checkList.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_client" jhiTranslate="stockProjectApp.checkList.client">Client</label>
+          <input type="text" class="form-control" name="client" id="field_client" data-cy="client" formControlName="client" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_contractNumber" jhiTranslate="stockProjectApp.checkList.contractNumber"
+            >Contract Number</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="contractNumber"
+            id="field_contractNumber"
+            data-cy="contractNumber"
+            formControlName="contractNumber"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_adress" jhiTranslate="stockProjectApp.checkList.adress">Adress</label>
+          <input type="text" class="form-control" name="adress" id="field_adress" data-cy="adress" formControlName="adress" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_technicienDef" jhiTranslate="stockProjectApp.checkList.technicienDef">Technicien Def</label>
+          <input
+            type="text"
+            class="form-control"
+            name="technicienDef"
+            id="field_technicienDef"
+            data-cy="technicienDef"
+            formControlName="technicienDef"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_date" jhiTranslate="stockProjectApp.checkList.date">Date</label>
+          <div class="d-flex">
+            <input
+              id="field_date"
+              data-cy="date"
+              type="datetime-local"
+              class="form-control"
+              name="date"
+              formControlName="date"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tableDetectionTaskStatus" jhiTranslate="stockProjectApp.checkList.tableDetectionTaskStatus"
+            >Table Detection Task Status</label
+          >
+          <select
+            class="form-control"
+            name="tableDetectionTaskStatus"
+            formControlName="tableDetectionTaskStatus"
+            id="field_tableDetectionTaskStatus"
+            data-cy="tableDetectionTaskStatus"
+          >
+            <option [ngValue]="null">{{ 'stockProjectApp.TaskStatus.null' | translate }}</option>
+            @for (taskStatus of taskStatusValues; track $index) {
+              <option [value]="taskStatus">{{ 'stockProjectApp.TaskStatus.' + taskStatus | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tableDetectionComment" jhiTranslate="stockProjectApp.checkList.tableDetectionComment"
+            >Table Detection Comment</label
+          >
+          <textarea
+            class="form-control"
+            name="tableDetectionComment"
+            id="field_tableDetectionComment"
+            data-cy="tableDetectionComment"
+            formControlName="tableDetectionComment"
+          ></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_diDMTaskStatus" jhiTranslate="stockProjectApp.checkList.diDMTaskStatus"
+            >Di DM Task Status</label
+          >
+          <select
+            class="form-control"
+            name="diDMTaskStatus"
+            formControlName="diDMTaskStatus"
+            id="field_diDMTaskStatus"
+            data-cy="diDMTaskStatus"
+          >
+            <option [ngValue]="null">{{ 'stockProjectApp.TaskStatus.null' | translate }}</option>
+            @for (taskStatus of taskStatusValues; track $index) {
+              <option [value]="taskStatus">{{ 'stockProjectApp.TaskStatus.' + taskStatus | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_diDMComment" jhiTranslate="stockProjectApp.checkList.diDMComment">Di DM Comment</label>
+          <textarea
+            class="form-control"
+            name="diDMComment"
+            id="field_diDMComment"
+            data-cy="diDMComment"
+            formControlName="diDMComment"
+          ></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_detecteursPonctuelsTaskStatus"
+            jhiTranslate="stockProjectApp.checkList.detecteursPonctuelsTaskStatus"
+            >Detecteurs Ponctuels Task Status</label
+          >
+          <select
+            class="form-control"
+            name="detecteursPonctuelsTaskStatus"
+            formControlName="detecteursPonctuelsTaskStatus"
+            id="field_detecteursPonctuelsTaskStatus"
+            data-cy="detecteursPonctuelsTaskStatus"
+          >
+            <option [ngValue]="null">{{ 'stockProjectApp.TaskStatus.null' | translate }}</option>
+            @for (taskStatus of taskStatusValues; track $index) {
+              <option [value]="taskStatus">{{ 'stockProjectApp.TaskStatus.' + taskStatus | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_detecteursPonctuelsComment"
+            jhiTranslate="stockProjectApp.checkList.detecteursPonctuelsComment"
+            >Detecteurs Ponctuels Comment</label
+          >
+          <textarea
+            class="form-control"
+            name="detecteursPonctuelsComment"
+            id="field_detecteursPonctuelsComment"
+            data-cy="detecteursPonctuelsComment"
+            formControlName="detecteursPonctuelsComment"
+          ></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_declencheurManuelsTaskStatus"
+            jhiTranslate="stockProjectApp.checkList.declencheurManuelsTaskStatus"
+            >Declencheur Manuels Task Status</label
+          >
+          <select
+            class="form-control"
+            name="declencheurManuelsTaskStatus"
+            formControlName="declencheurManuelsTaskStatus"
+            id="field_declencheurManuelsTaskStatus"
+            data-cy="declencheurManuelsTaskStatus"
+          >
+            <option [ngValue]="null">{{ 'stockProjectApp.TaskStatus.null' | translate }}</option>
+            @for (taskStatus of taskStatusValues; track $index) {
+              <option [value]="taskStatus">{{ 'stockProjectApp.TaskStatus.' + taskStatus | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_declencheurManuelsComment" jhiTranslate="stockProjectApp.checkList.declencheurManuelsComment"
+            >Declencheur Manuels Comment</label
+          >
+          <textarea
+            class="form-control"
+            name="declencheurManuelsComment"
+            id="field_declencheurManuelsComment"
+            data-cy="declencheurManuelsComment"
+            formControlName="declencheurManuelsComment"
+          ></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_tableMiseSecurityIncendieTaskStatus"
+            jhiTranslate="stockProjectApp.checkList.tableMiseSecurityIncendieTaskStatus"
+            >Table Mise Security Incendie Task Status</label
+          >
+          <select
+            class="form-control"
+            name="tableMiseSecurityIncendieTaskStatus"
+            formControlName="tableMiseSecurityIncendieTaskStatus"
+            id="field_tableMiseSecurityIncendieTaskStatus"
+            data-cy="tableMiseSecurityIncendieTaskStatus"
+          >
+            <option [ngValue]="null">{{ 'stockProjectApp.TaskStatus.null' | translate }}</option>
+            @for (taskStatus of taskStatusValues; track $index) {
+              <option [value]="taskStatus">{{ 'stockProjectApp.TaskStatus.' + taskStatus | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_tableMiseSecurityIncendieComment"
+            jhiTranslate="stockProjectApp.checkList.tableMiseSecurityIncendieComment"
+            >Table Mise Security Incendie Comment</label
+          >
+          <textarea
+            class="form-control"
+            name="tableMiseSecurityIncendieComment"
+            id="field_tableMiseSecurityIncendieComment"
+            data-cy="tableMiseSecurityIncendieComment"
+            formControlName="tableMiseSecurityIncendieComment"
+          ></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_alimentationSecoursTaskStatus"
+            jhiTranslate="stockProjectApp.checkList.alimentationSecoursTaskStatus"
+            >Alimentation Secours Task Status</label
+          >
+          <select
+            class="form-control"
+            name="alimentationSecoursTaskStatus"
+            formControlName="alimentationSecoursTaskStatus"
+            id="field_alimentationSecoursTaskStatus"
+            data-cy="alimentationSecoursTaskStatus"
+          >
+            <option [ngValue]="null">{{ 'stockProjectApp.TaskStatus.null' | translate }}</option>
+            @for (taskStatus of taskStatusValues; track $index) {
+              <option [value]="taskStatus">{{ 'stockProjectApp.TaskStatus.' + taskStatus | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_alimentationSecoursComment"
+            jhiTranslate="stockProjectApp.checkList.alimentationSecoursComment"
+            >Alimentation Secours Comment</label
+          >
+          <textarea
+            class="form-control"
+            name="alimentationSecoursComment"
+            id="field_alimentationSecoursComment"
+            data-cy="alimentationSecoursComment"
+            formControlName="alimentationSecoursComment"
+          ></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_equipementAlarmeTaskStatus"
+            jhiTranslate="stockProjectApp.checkList.equipementAlarmeTaskStatus"
+            >Equipement Alarme Task Status</label
+          >
+          <select
+            class="form-control"
+            name="equipementAlarmeTaskStatus"
+            formControlName="equipementAlarmeTaskStatus"
+            id="field_equipementAlarmeTaskStatus"
+            data-cy="equipementAlarmeTaskStatus"
+          >
+            <option [ngValue]="null">{{ 'stockProjectApp.TaskStatus.null' | translate }}</option>
+            @for (taskStatus of taskStatusValues; track $index) {
+              <option [value]="taskStatus">{{ 'stockProjectApp.TaskStatus.' + taskStatus | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_equipementAlarmeComment" jhiTranslate="stockProjectApp.checkList.equipementAlarmeComment"
+            >Equipement Alarme Comment</label
+          >
+          <textarea
+            class="form-control"
+            name="equipementAlarmeComment"
+            id="field_equipementAlarmeComment"
+            data-cy="equipementAlarmeComment"
+            formControlName="equipementAlarmeComment"
+          ></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dasTaskStatus" jhiTranslate="stockProjectApp.checkList.dasTaskStatus">Das Task Status</label>
+          <select
+            class="form-control"
+            name="dasTaskStatus"
+            formControlName="dasTaskStatus"
+            id="field_dasTaskStatus"
+            data-cy="dasTaskStatus"
+          >
+            <option [ngValue]="null">{{ 'stockProjectApp.TaskStatus.null' | translate }}</option>
+            @for (taskStatus of taskStatusValues; track $index) {
+              <option [value]="taskStatus">{{ 'stockProjectApp.TaskStatus.' + taskStatus | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dasComment" jhiTranslate="stockProjectApp.checkList.dasComment">Das Comment</label>
+          <textarea
+            class="form-control"
+            name="dasComment"
+            id="field_dasComment"
+            data-cy="dasComment"
+            formControlName="dasComment"
+          ></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_arretTechniqueTaskStatus" jhiTranslate="stockProjectApp.checkList.arretTechniqueTaskStatus"
+            >Arret Technique Task Status</label
+          >
+          <select
+            class="form-control"
+            name="arretTechniqueTaskStatus"
+            formControlName="arretTechniqueTaskStatus"
+            id="field_arretTechniqueTaskStatus"
+            data-cy="arretTechniqueTaskStatus"
+          >
+            <option [ngValue]="null">{{ 'stockProjectApp.TaskStatus.null' | translate }}</option>
+            @for (taskStatus of taskStatusValues; track $index) {
+              <option [value]="taskStatus">{{ 'stockProjectApp.TaskStatus.' + taskStatus | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_arretTechniqueComment" jhiTranslate="stockProjectApp.checkList.arretTechniqueComment"
+            >Arret Technique Comment</label
+          >
+          <textarea
+            class="form-control"
+            name="arretTechniqueComment"
+            id="field_arretTechniqueComment"
+            data-cy="arretTechniqueComment"
+            formControlName="arretTechniqueComment"
+          ></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_baiePcsTaskStatus" jhiTranslate="stockProjectApp.checkList.baiePcsTaskStatus"
+            >Baie Pcs Task Status</label
+          >
+          <select
+            class="form-control"
+            name="baiePcsTaskStatus"
+            formControlName="baiePcsTaskStatus"
+            id="field_baiePcsTaskStatus"
+            data-cy="baiePcsTaskStatus"
+          >
+            <option [ngValue]="null">{{ 'stockProjectApp.TaskStatus.null' | translate }}</option>
+            @for (taskStatus of taskStatusValues; track $index) {
+              <option [value]="taskStatus">{{ 'stockProjectApp.TaskStatus.' + taskStatus | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_baiePCScomment" jhiTranslate="stockProjectApp.checkList.baiePCScomment"
+            >Baie PC Scomment</label
+          >
+          <textarea
+            class="form-control"
+            name="baiePCScomment"
+            id="field_baiePCScomment"
+            data-cy="baiePCScomment"
+            formControlName="baiePCScomment"
+          ></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_superviseurTaskStatus" jhiTranslate="stockProjectApp.checkList.superviseurTaskStatus"
+            >Superviseur Task Status</label
+          >
+          <select
+            class="form-control"
+            name="superviseurTaskStatus"
+            formControlName="superviseurTaskStatus"
+            id="field_superviseurTaskStatus"
+            data-cy="superviseurTaskStatus"
+          >
+            <option [ngValue]="null">{{ 'stockProjectApp.TaskStatus.null' | translate }}</option>
+            @for (taskStatus of taskStatusValues; track $index) {
+              <option [value]="taskStatus">{{ 'stockProjectApp.TaskStatus.' + taskStatus | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_superviseurComment" jhiTranslate="stockProjectApp.checkList.superviseurComment"
+            >Superviseur Comment</label
+          >
+          <textarea
+            class="form-control"
+            name="superviseurComment"
+            id="field_superviseurComment"
+            data-cy="superviseurComment"
+            formControlName="superviseurComment"
+          ></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_validate" jhiTranslate="stockProjectApp.checkList.validate">Validate</label>
+          <input type="checkbox" class="form-check" name="validate" id="field_validate" data-cy="validate" formControlName="validate" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_createdBy" jhiTranslate="stockProjectApp.checkList.createdBy">Created By</label>
+          <input type="text" class="form-control" name="createdBy" id="field_createdBy" data-cy="createdBy" formControlName="createdBy" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

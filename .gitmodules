@@ -1,0 +1,3 @@
+[submodule "generator-jhipster"]
+	path = generator-jhipster
+	url = https://github.com/jhipster/generator-jhipster.git
