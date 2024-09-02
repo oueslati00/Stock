@@ -3,11 +3,13 @@ Main page styles
 ========================================================================== */
 
 .hipster {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   display: inline-block;
-  width: 347px;
-  height: 497px;
-  background: url('../../content/images/jhipster_family_member_1.svg') no-repeat center top;
   background-size: contain;
+
+  background: url('../../content/images/firstCoverImage.webp') no-repeat center top;
 }
 
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
@@ -17,7 +19,57 @@ Main page styles
   only screen and (min-resolution: 192dpi),
   only screen and (min-resolution: 2dppx) {
   .hipster {
-    background: url('../../content/images/jhipster_family_member_1.svg') no-repeat center top;
+    background: url('../../content/images/firstCoverImage.webp') no-repeat center top;
     background-size: contain;
+  }
+}
+
+.aboutUsImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: inline-block;
+  background-size: contain;
+  background: url('../../content/images/AboutSectionImage.png') no-repeat center center / cover;
+}
+.btn-xlg {
+  font-size: 1.5rem; /* Adjust the font size */
+  padding: 1rem 2rem; /* Adjust the padding */
+  border-radius: 2rem; /* Adjust the border radius if needed */
+  margin-top: 1rem;
+}
+
+.cover {
+  position: relative;
+  width: 100%;
+  height: 50rem; /* Adjust height as needed */
+  overflow: hidden;
+}
+
+.cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: inline-block;
+  background: url('../../content/images/firstCoverImage.webp') no-repeat center top;
+}
+
+.cover-text {
+  position: absolute;
+  top: 40%;
+  left: 20%;
+  transform: translate(-20%, -20%);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-family: 'Sora', sans-serif;
+}
+card {
+  border-radius: 20px;
+}
+
+@media (max-width: 800px) {
+  .flex-container {
+    margin: 5rem 0 5rem 0;
   }
 }

@@ -7,13 +7,14 @@ import { AccountService } from 'app/core/auth/account.service';
 import { AppPageTitleStrategy } from 'app/app-page-title-strategy';
 import FooterComponent from '../footer/footer.component';
 import PageRibbonComponent from '../profiles/page-ribbon.component';
+import HomeComponent from '../../home/home.component';
 
 @Component({
   standalone: true,
   selector: 'jhi-main',
   templateUrl: './main.component.html',
   providers: [AppPageTitleStrategy],
-  imports: [RouterOutlet, FooterComponent, PageRibbonComponent],
+  imports: [RouterOutlet, FooterComponent, PageRibbonComponent, HomeComponent],
 })
 export default class MainComponent implements OnInit {
   private renderer: Renderer2;
@@ -37,5 +38,9 @@ export default class MainComponent implements OnInit {
       dayjs.locale(langChangeEvent.lang);
       this.renderer.setAttribute(document.querySelector('html'), 'lang', langChangeEvent.lang);
     });
+  }
+
+  isHomePage(): boolean {
+    return this.router.url === '/';
   }
 }
