@@ -242,3 +242,6 @@ angular-cli removes postcss-rtl processed inline css, processed rules must be ad
   border-bottom: 2px solid #013366;
   margin: 1rem;
 }
+::placeholder {
+  color: rgba(0, 0, 0, 0.2);
+}

@@ -1,9 +1,11 @@
-<div class="d-flex justify-content-center">
-  <div class="col-8">
+<div class="d-flex justify-content-center" style="font-family: 'Sora', sans-serif">
+  <div class="col-8 border border-dark bg-light p-5">
     <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-report-intervention-list-heading" data-cy="ReportInterventionListCreateUpdateHeading">RAPPORT D'INTERVENTION</h2>
+      <h2 id="jhi-report-intervention-list-heading" data-cy="ReportInterventionListCreateUpdateHeading" class="fw-bold">
+        RAPPORT D'INTERVENTION
+      </h2>
 
-      <div>
+      <div class="">
         <jhi-alert-error></jhi-alert-error>
 
         @if (editForm.controls.id.value !== null) {
@@ -15,104 +17,95 @@
         <div class="row">
           <div class="col">
             <div class="mb-3">
-              La detection electronique Francaise <br />
-              S.A.S ou capital de 5 000 000 Euros - R.C.S EVRY B712 056 -Siret 712 056 266 00117<br />
-              Parc d'activits du Moulin de Massy -9 , rue de Saule Troup - 91882 MASST CEDEX<br />
+              La detection electronique Francaise: <br />
+              S.A.S ou capital de 5 000 000 Euros - R.C.S EVRY B712 056 -Siret 712 056 266 00117. Parc d'activits du Moulin de Massy -9 ,
+              rue de Saule Troup - 91882 MASST CEDEX<br />
             </div>
-            <div class="mb-3">
-              <label class="form-label" for="field_site" jhiTranslate="stockProjectApp.reportInterventionList.site">Site</label>
-              <input type="text" class="form-control" name="site" id="field_site" data-cy="site" formControlName="site" />
-            </div>
+            <input
+              type="text"
+              class="form-control mb-3 ml-0 buttomMaintenance pr-3 container"
+              name="site"
+              id="field_site"
+              data-cy="site"
+              formControlName="site"
+              placeholder="Site"
+            />
           </div>
-          <div class="col">
+          <div class="col border pt-2">
             <div class="mb-3 row">
-              <label class="form-label col-md-auto" for="field_codeAgence" jhiTranslate="stockProjectApp.reportInterventionList.codeAgence"
-                >Code Agence</label
-              >
               <input
                 type="text"
-                class="form-control col"
+                class="form-control col buttomMaintenance"
                 name="codeAgence"
                 id="field_codeAgence"
                 data-cy="codeAgence"
                 formControlName="codeAgence"
+                placeholder="code Agence"
               />
             </div>
             <div class="mb-3 row">
-              <label
-                class="form-label col-md-auto"
-                for="field_affaireNumber"
-                jhiTranslate="stockProjectApp.reportInterventionList.affaireNumber"
-                >Affaire Number</label
-              >
               <input
                 type="text"
-                class="form-control col"
+                class="form-control col buttomMaintenance"
                 name="affaireNumber"
                 id="field_affaireNumber"
                 data-cy="affaireNumber"
                 formControlName="affaireNumber"
+                placeholder="Affaire Number"
               />
             </div>
+            <!-- Contract Number -->
             <div class="mb-3 row">
-              <label
-                class="form-label col-md-auto"
-                for="field_contractNumber"
-                jhiTranslate="stockProjectApp.reportInterventionList.contractNumber"
-                >Contract Number</label
-              >
               <input
                 type="text"
-                class="form-control col"
+                class="form-control buttomMaintenance"
                 name="contractNumber"
                 id="field_contractNumber"
                 data-cy="contractNumber"
                 formControlName="contractNumber"
+                placeholder="Contract Number"
               />
             </div>
           </div>
         </div>
 
         <div class="mb-3 row">
-          <label
-            class="form-label col-md-auto"
-            for="field_installationAdress"
-            jhiTranslate="stockProjectApp.reportInterventionList.installationAdress"
-            >Installation Adress</label
-          >
           <input
             type="text"
-            class="form-control col"
+            class="form-control buttomMaintenance"
             name="installationAdress"
             id="field_installationAdress"
             data-cy="installationAdress"
             formControlName="installationAdress"
+            placeholder="Installation Adress"
           />
         </div>
 
         <div class="row">
           <div class="col-md-8">
             <div class="mb-3 row">
-              <label
-                class="form-label col-md-auto"
-                for="field_interlocuteurIntervation"
-                jhiTranslate="stockProjectApp.reportInterventionList.interlocuteurIntervation"
-                >Interlocuteur Intervation</label
-              >
               <input
                 type="text"
-                class="form-control col"
+                class="form-control buttomMaintenance"
                 name="interlocuteurIntervation"
                 id="field_interlocuteurIntervation"
                 data-cy="interlocuteurIntervation"
                 formControlName="interlocuteurIntervation"
+                placeholder="Interlocuteur Intervation"
               />
             </div>
           </div>
           <div class="col">
             <div class="mb-3 row">
-              <label class="form-label col-md-auto" for="field_tel" jhiTranslate="stockProjectApp.reportInterventionList.tel">Tel</label>
-              <input type="text" class="form-control col" name="tel" id="field_tel" data-cy="tel" formControlName="tel" />
+              <input
+                type="text"
+                class="form-control buttomMaintenance"
+                name="tel"
+                id="field_tel"
+                data-cy="tel"
+                formControlName="tel"
+                placeholder="Tel"
+              />
             </div>
           </div>
         </div>
@@ -153,36 +146,26 @@
         </div>
 
         <div class="mb-3 row">
-          <label
-            class="form-label col-md-auto"
-            for="field_adressFacturation"
-            jhiTranslate="stockProjectApp.reportInterventionList.adressFacturation"
-            >Adress Facturation</label
-          >
           <input
             type="text"
-            class="form-control col"
+            class="form-control buttomMaintenance"
             name="adressFacturation"
             id="field_adressFacturation"
             data-cy="adressFacturation"
             formControlName="adressFacturation"
+            placeholder="Adress Facturation"
           />
         </div>
         <hr />
         <div class="mb-3 row">
-          <label
-            class="form-label col-md-auto"
-            for="field_interlocuteurFacturation"
-            jhiTranslate="stockProjectApp.reportInterventionList.interlocuteurFacturation"
-            >Interlocuteur Facturation</label
-          >
           <input
             type="text"
-            class="form-control col"
+            class="form-control buttomMaintenance"
             name="interlocuteurFacturation"
             id="field_interlocuteurFacturation"
             data-cy="interlocuteurFacturation"
             formControlName="interlocuteurFacturation"
+            placeholder="Interlocuteur Facturation"
           />
         </div>
         <div class="row">
@@ -209,11 +192,12 @@
 
           <input
             type="text"
-            class="form-control col"
+            class="form-control col buttomMaintenance"
             name="conditionPayementComment"
             id="field_conditionPayementComment"
             data-cy="conditionPayementComment"
             formControlName="conditionPayementComment"
+            placeholder="condition Payement Comment"
           />
         </div>
         <hr />
@@ -259,19 +243,26 @@
             data-cy="maintenanceCorrective"
             formControlName="maintenanceCorrective"
           />
-          <label class="form-label col-md-auto" for="field_bT" jhiTranslate="stockProjectApp.reportInterventionList.bT">B T</label>
-          <input type="text" class="form-control col" name="bT" id="field_bT" data-cy="bT" formControlName="bT" />
+          <input
+            type="text"
+            class="form-control buttomMaintenance"
+            name="bT"
+            id="field_bT"
+            data-cy="bT"
+            formControlName="bT"
+            placeholder="B T"
+          />
         </div>
 
         <div class="mb-3 row">
-          <label class="form-label col-md-auto" for="field_anomalieSignalee">Anomalie Signalee</label>
           <input
             type="text"
-            class="form-control col"
+            class="form-control buttomMaintenance"
             name="anomalieSignalee"
             id="field_anomalieSignalee"
             data-cy="anomalieSignalee"
             formControlName="anomalieSignalee"
+            placeholder="Anomalie Signalee"
           />
         </div>
         <hr />
@@ -340,15 +331,14 @@
         <hr />
 
         <div class="mb-3">
-          <label class="form-label" for="field_natureIntervention" jhiTranslate="stockProjectApp.reportInterventionList.natureIntervention"
-            >Nature Intervention</label
-          >
           <textarea
-            class="form-control"
+            class="form-control buttomMaintenance"
             name="natureIntervention"
             id="field_natureIntervention"
             data-cy="natureIntervention"
             formControlName="natureIntervention"
+            placeholder="Nature Intervention"
+            rows="10"
           ></textarea>
         </div>
         <div class="row">
@@ -380,27 +370,28 @@
           />
         </div>
 
-        <div class="mb-3 row">
-          <label class="form-label col-md-auto" for="field_autreInterventionsAPrevoir">Autre Interventions A Prevoir si oui nature :</label>
+        <div class="mb-3">
           <input
             type="text"
-            class="form-control col"
+            class="form-control col buttomMaintenance"
             name="autreInterventionsAPrevoir"
             id="field_autreInterventionsAPrevoir"
             data-cy="autreInterventionsAPrevoir"
             formControlName="autreInterventionsAPrevoir"
+            placeholder="Autre Interventions A Prevoir si oui nature :"
           />
         </div>
         <hr />
         <div class="row">
           <div class="col mb-3">
-            <label class="form-label" for="field_clientApreciation">APPRECIATION DU CLIENT SUR LA PRESTATION</label>
             <textarea
-              class="form-control"
+              class="form-control buttomMaintenance"
               name="clientApreciation"
               id="field_clientApreciation"
               data-cy="clientApreciation"
               formControlName="clientApreciation"
+              placeholder="APPRECIATION DU CLIENT SUR LA PRESTATION"
+              rows="11"
             ></textarea>
           </div>
           <div class="col">
@@ -468,7 +459,7 @@
         <hr />
         <div class="row">
           <div class="col">
-            <div class="md-3">Validation DEF</div>
+            <div class="md-3 fw-bold m-3">Validation DEF</div>
             <div class="mb-3 row">
               <label class="form-label col-md-auto" for="field_technicienName">Nom du Technicien</label>
               <input
@@ -492,8 +483,8 @@
               />
             </div>
           </div>
-          <div class="col">
-            <div class="md-3">Validation Client</div>
+          <div class="col m-3">
+            <div class="md-3 fw-bold m-3">Validation Client</div>
             <div class="mb-3 row">
               <label class="form-label col-md-auto" for="field_validationClientName">Nom</label>
               <input
