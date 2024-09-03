@@ -90,6 +90,7 @@ updates:
         patterns:
           - '@fortawesome/fontawesome-svg-core'
           - '@fortawesome/free-solid-svg-icons'
+          - '@fortawesome/free-brands-svg-icons'
       typescript-eslint:
         patterns:
           - '@typescript-eslint/*'
@@ -145,6 +146,7 @@ updates:
         patterns:
           - '@fortawesome/fontawesome-svg-core'
           - '@fortawesome/free-solid-svg-icons'
+          - '@fortawesome/free-brands-svg-icons'
       react:
         patterns:
           - '@reduxjs/*'
@@ -185,6 +187,7 @@ updates:
         patterns:
           - '@fortawesome/fontawesome-svg-core'
           - '@fortawesome/free-solid-svg-icons'
+          - '@fortawesome/free-brands-svg-icons'
 
   - package-ecosystem: 'docker'
     directory: '/generators/server/resources/'

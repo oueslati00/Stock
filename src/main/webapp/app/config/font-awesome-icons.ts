@@ -45,6 +45,8 @@ import {
   // jhipster-needle-add-icon-import
 } from '@fortawesome/free-solid-svg-icons';
 
+import { faFacebook, faTwitter, faInstagram, faFacebookF, faFacebookSquare } from '@fortawesome/free-brands-svg-icons';
+
 export const fontAwesomeIcons = [
   faArrowLeft,
   faAsterisk,
@@ -88,5 +90,10 @@ export const fontAwesomeIcons = [
   faEnvelope,
   faEnvelopesBulk,
   faEnvelopeSquare,
+  faTwitter,
+  faInstagram,
+  faFacebook,
+  faFacebookF,
+  faFacebookSquare,
   // jhipster-needle-add-icon-import
 ];

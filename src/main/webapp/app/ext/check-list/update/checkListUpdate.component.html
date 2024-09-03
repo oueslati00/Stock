@@ -1,11 +1,11 @@
-aaaaaaaa
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center" style="font-family: 'Sora', sans-serif">
   <div class="col-8">
     <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
       <h2
         id="jhi-check-list-heading"
         data-cy="CheckListCreateUpdateHeading"
         jhiTranslate="stockProjectApp.checkList.home.createOrEditLabelExtend"
+        style="color: #013366"
       >
         Check Liste Maintenance Préventive
       </h2>
@@ -21,52 +21,56 @@ aaaaaaaa
         }
 
         <div class="col-4">
-          <label class="form-label" for="field_client" jhiTranslate="stockProjectApp.checkList.client">Client</label>
-          <input type="text" class="form-control" name="client" id="field_client" data-cy="client" formControlName="client" />
-        </div>
-        <div class="row">
-          <div class="col">
-            <label class="form-label" for="field_contractNumber" jhiTranslate="stockProjectApp.checkList.contractNumber"
-              >Contract Number</label
-            >
-            <input
-              type="text"
-              class="form-control"
-              name="contractNumber"
-              id="field_contractNumber"
-              data-cy="contractNumber"
-              formControlName="contractNumber"
-            />
-          </div>
-
-          <div class="col">
-            <label class="form-label" for="field_adress" jhiTranslate="stockProjectApp.checkList.adress">Adress</label>
-            <input type="text" class="form-control" name="adress" id="field_adress" data-cy="adress" formControlName="adress" />
-          </div>
+          <input
+            type="text"
+            class="form-control buttomMaintenance"
+            name="client"
+            id="field_client"
+            data-cy="client"
+            formControlName="client"
+            placeholder="client"
+          />
         </div>
 
         <div class="row">
+          <input
+            type="text"
+            class="form-control buttomMaintenance col"
+            name="contractNumber"
+            id="field_contractNumber"
+            data-cy="contractNumber"
+            formControlName="contractNumber"
+            placeholder="contact number"
+          />
+          <input
+            type="text"
+            class="form-control buttomMaintenance col"
+            name="adress"
+            id="field_adress"
+            data-cy="adress"
+            formControlName="adress"
+            placeholder="Adress"
+          />
+        </div>
+
+        <div class="row">
+          <input
+            type="text"
+            class="form-control col buttomMaintenance"
+            name="technicienDef"
+            id="field_technicienDef"
+            data-cy="technicienDef"
+            formControlName="technicienDef"
+            placeholder="Technicien Def"
+          />
+
           <div class="col">
-            <label class="form-label" for="field_technicienDef" jhiTranslate="stockProjectApp.checkList.technicienDef"
-              >Technicien Def</label
-            >
-            <input
-              type="text"
-              class="form-control"
-              name="technicienDef"
-              id="field_technicienDef"
-              data-cy="technicienDef"
-              formControlName="technicienDef"
-            />
-          </div>
-          <div class="col">
-            <label class="form-label" for="field_date" jhiTranslate="stockProjectApp.checkList.date">Date</label>
             <div class="d-flex">
               <input
                 id="field_date"
                 data-cy="date"
                 type="datetime-local"
-                class="form-control"
+                class="form-control buttomMaintenance"
                 name="date"
                 formControlName="date"
                 placeholder="YYYY-MM-DD HH:mm"
@@ -76,7 +80,7 @@ aaaaaaaa
         </div>
         <div style="margin-top: 15px">
           <table class="table-bordered mb-3" style="width: -moz-available">
-            <thead>
+            <thead class="text-center">
               <tr>
                 <th>Taches à effectuer</th>
                 <th>Status</th>
@@ -88,14 +92,17 @@ aaaaaaaa
                 <td colspan="3" style="text-align: center">Système de détection incendie (SDI)</td>
               </tr>
               <tr>
-                <td>Tableau de détection incendie <br />100% à chaque visite :</td>
                 <td>
-                  <label
-                    class="form-label"
-                    for="field_tableDetectionTaskStatus"
-                    jhiTranslate="stockProjectApp.checkList.tableDetectionTaskStatus"
-                    >Table Detection Task Status</label
-                  >
+                  <p class="fw-bold text-decoration-underline">Tableau de détection incendie 100% à chaque visite:<br /></p>
+                  <ul>
+                    <li>Contrôle des tensions élémentaires et des protections</li>
+                    <li>Contrôle des connexions</li>
+                    <li>Contrôle de la 3ème source</li>
+                    <li>Contrôle des fonctions d’exploitation</li>
+                    <li>Contrôle de la charge des batteries</li>
+                  </ul>
+                </td>
+                <td>
                   <select
                     class="form-control"
                     name="tableDetectionTaskStatus"
@@ -110,9 +117,6 @@ aaaaaaaa
                   </select>
                 </td>
                 <td>
-                  <label class="form-label" for="field_tableDetectionComment" jhiTranslate="stockProjectApp.checkList.tableDetectionComment"
-                    >Table Detection Comment</label
-                  >
                   <textarea
                     class="form-control"
                     name="tableDetectionComment"
@@ -123,11 +127,14 @@ aaaaaaaa
                 </td>
               </tr>
               <tr>
-                <td>Boucles (DI/DM) 100% à chaque visite:</td>
                 <td>
-                  <label class="form-label" for="field_diDMTaskStatus" jhiTranslate="stockProjectApp.checkList.diDMTaskStatus"
-                    >Di DM Task Status</label
-                  >
+                  <p class="fw-bold text-decoration-underline">Boucles (DI/DM) 100% à chaque visite :<br /></p>
+                  <ul>
+                    <li>Contrôle de l’état des lignes des détecteurs par OCT.</li>
+                    <li>Essai sur le dérangement de chaque boucle en <br />débranchant successivement un détecteur, un fil</li>
+                  </ul>
+                </td>
+                <td>
                   <select
                     class="form-control"
                     name="diDMTaskStatus"
@@ -142,9 +149,6 @@ aaaaaaaa
                   </select>
                 </td>
                 <td>
-                  <label class="form-label" for="field_diDMComment" jhiTranslate="stockProjectApp.checkList.diDMComment"
-                    >Di DM Comment</label
-                  >
                   <textarea
                     class="form-control"
                     name="diDMComment"
@@ -155,14 +159,13 @@ aaaaaaaa
                 </td>
               </tr>
               <tr>
-                <td>Détecteurs ponctuels : (50% de chaque zone à chaque visite)</td>
                 <td>
-                  <label
-                    class="form-label"
-                    for="field_detecteursPonctuelsTaskStatus"
-                    jhiTranslate="stockProjectApp.checkList.detecteursPonctuelsTaskStatus"
-                    >Detecteurs Ponctuels Task Status</label
-                  >
+                  <p class="fw-bold text-decoration-underline">Détecteurs ponctuels : (50% de chaque zone à chaque visite).<br /></p>
+                  <ul>
+                    <li>Essais sur les lignes avec un générateur adapté (bombe aérosol …)</li>
+                  </ul>
+                </td>
+                <td>
                   <select
                     class="form-control"
                     name="detecteursPonctuelsTaskStatus"
@@ -177,12 +180,6 @@ aaaaaaaa
                   </select>
                 </td>
                 <td>
-                  <label
-                    class="form-label"
-                    for="field_detecteursPonctuelsComment"
-                    jhiTranslate="stockProjectApp.checkList.detecteursPonctuelsComment"
-                    >Detecteurs Ponctuels Comment</label
-                  >
                   <textarea
                     class="form-control"
                     name="detecteursPonctuelsComment"
@@ -193,14 +190,14 @@ aaaaaaaa
                 </td>
               </tr>
               <tr>
-                <td>éclencheurs manuels (50% à chaque visite</td>
                 <td>
-                  <label
-                    class="form-label"
-                    for="field_declencheurManuelsTaskStatus"
-                    jhiTranslate="stockProjectApp.checkList.declencheurManuelsTaskStatus"
-                    >Declencheur Manuels Task Status</label
-                  >
+                  <p class="fw-bold text-decoration-underline">Déclencheurs manuels (50% à chaque visite):<br /></p>
+                  <ul>
+                    <li>Contrôle de l’état.</li>
+                    <li>Essai fonctionnel.</li>
+                  </ul>
+                </td>
+                <td>
                   <select
                     class="form-control"
                     name="declencheurManuelsTaskStatus"
@@ -215,12 +212,6 @@ aaaaaaaa
                   </select>
                 </td>
                 <td>
-                  <label
-                    class="form-label"
-                    for="field_declencheurManuelsComment"
-                    jhiTranslate="stockProjectApp.checkList.declencheurManuelsComment"
-                    >Declencheur Manuels Comment</label
-                  >
                   <textarea
                     class="form-control"
                     name="declencheurManuelsComment"
@@ -234,14 +225,15 @@ aaaaaaaa
                 <td colspan="3" style="text-align: center">Système de mise en sécurité incendie (SMSI)</td>
               </tr>
               <tr>
-                <td>Tableau de mise en sécurité incendie (100% à chaque visite)</td>
                 <td>
-                  <label
-                    class="form-label"
-                    for="field_tableMiseSecurityIncendieTaskStatus"
-                    jhiTranslate="stockProjectApp.checkList.tableMiseSecurityIncendieTaskStatus"
-                    >Table Mise Security Incendie Task Status</label
-                  >
+                  <p class="fw-bold text-decoration-underline">Tableau de mise en sécurité incendie (100% à chaque visite)<br /></p>
+                  <ul>
+                    <li>Contrôle des tensions élémentaires et des protections</li>
+                    <li>Contrôle des connexions.</li>
+                    <li>Contrôle de la charge des batteries.</li>
+                  </ul>
+                </td>
+                <td>
                   <select
                     class="form-control"
                     name="tableMiseSecurityIncendieTaskStatus"
@@ -256,12 +248,6 @@ aaaaaaaa
                   </select>
                 </td>
                 <td>
-                  <label
-                    class="form-label"
-                    for="field_tableMiseSecurityIncendieComment"
-                    jhiTranslate="stockProjectApp.checkList.tableMiseSecurityIncendieComment"
-                    >Table Mise Security Incendie Comment</label
-                  >
                   <textarea
                     class="form-control"
                     name="tableMiseSecurityIncendieComment"
@@ -272,14 +258,16 @@ aaaaaaaa
                 </td>
               </tr>
               <tr>
-                <td>Alimentation de secours (100% à chaque visite)</td>
                 <td>
-                  <label
-                    class="form-label"
-                    for="field_alimentationSecoursTaskStatus"
-                    jhiTranslate="stockProjectApp.checkList.alimentationSecoursTaskStatus"
-                    >Alimentation Secours Task Status</label
-                  >
+                  <p class="fw-bold text-decoration-underline">Alimentation de secours (100% à chaque visite):<br /></p>
+                  <ul>
+                    <li>Contrôle de la charge des batteries, nettoyage des cosses</li>
+                    <li>Mise en fonctionnement en secours (coupant la source principale).</li>
+                    <li>Contrôle des tensions</li>
+                    <li>Remise en fonctionnement marche normale.</li>
+                  </ul>
+                </td>
+                <td>
                   <select
                     class="form-control"
                     name="alimentationSecoursTaskStatus"
@@ -294,12 +282,6 @@ aaaaaaaa
                   </select>
                 </td>
                 <td>
-                  <label
-                    class="form-label"
-                    for="field_alimentationSecoursComment"
-                    jhiTranslate="stockProjectApp.checkList.alimentationSecoursComment"
-                    >Alimentation Secours Comment</label
-                  >
                   <textarea
                     class="form-control"
                     name="alimentationSecoursComment"
@@ -310,14 +292,14 @@ aaaaaaaa
                 </td>
               </tr>
               <tr>
-                <td>Equipement d’alarme : (100% à chaque visite)</td>
                 <td>
-                  <label
-                    class="form-label"
-                    for="field_equipementAlarmeTaskStatus"
-                    jhiTranslate="stockProjectApp.checkList.equipementAlarmeTaskStatus"
-                    >Equipement Alarme Task Status</label
-                  >
+                  <p class="fw-bold text-decoration-underline">Equipement d’alarme : (100% à chaque visite):<br /></p>
+                  <ul>
+                    <li>Contrôle visuellement l’état de chaque diffuseur <br />sonore pour la zone d’évacuation</li>
+                    <li>Essai de fonctionnement (Audibilité à chaque point <br />du site ou partie concernée).</li>
+                  </ul>
+                </td>
+                <td>
                   <select
                     class="form-control"
                     name="equipementAlarmeTaskStatus"
@@ -332,12 +314,6 @@ aaaaaaaa
                   </select>
                 </td>
                 <td>
-                  <label
-                    class="form-label"
-                    for="field_equipementAlarmeComment"
-                    jhiTranslate="stockProjectApp.checkList.equipementAlarmeComment"
-                    >Equipement Alarme Comment</label
-                  >
                   <textarea
                     class="form-control"
                     name="equipementAlarmeComment"
@@ -348,11 +324,16 @@ aaaaaaaa
                 </td>
               </tr>
               <tr>
-                <td>Dispositifs actionnés de sécurité (DAS)</td>
                 <td>
-                  <label class="form-label" for="field_dasTaskStatus" jhiTranslate="stockProjectApp.checkList.dasTaskStatus"
-                    >Das Task Status</label
-                  >
+                  <p class="fw-bold text-decoration-underline">
+                    Dispositifs actionnés de sécurité (DAS) (100% à chaque visite, selon<br />
+                    NFS et sous responsabilité client)<br />
+                  </p>
+                  <ul>
+                    <li>Essai des fonctions et des DAS</li>
+                  </ul>
+                </td>
+                <td>
                   <select
                     class="form-control"
                     name="dasTaskStatus"
@@ -367,7 +348,6 @@ aaaaaaaa
                   </select>
                 </td>
                 <td>
-                  <label class="form-label" for="field_dasComment" jhiTranslate="stockProjectApp.checkList.dasComment">Das Comment</label>
                   <textarea
                     class="form-control"
                     name="dasComment"
@@ -378,14 +358,19 @@ aaaaaaaa
                 </td>
               </tr>
               <tr>
-                <td>Arrêts techniques</td>
                 <td>
-                  <label
-                    class="form-label"
-                    for="field_arretTechniqueTaskStatus"
-                    jhiTranslate="stockProjectApp.checkList.arretTechniqueTaskStatus"
-                    >Arret Technique Task Status</label
-                  >
+                  <p class="fw-bold text-decoration-underline">
+                    Arrêts techniques (100% à chaque visite,<br />
+                    selon NFS et sous responsabilité client)<br />
+                  </p>
+                  <ul>
+                    <li>
+                      Essai des commandes (climatisation, énergie, ventilation,<br />
+                      Sonorisation, etc…)
+                    </li>
+                  </ul>
+                </td>
+                <td>
                   <select
                     class="form-control"
                     name="arretTechniqueTaskStatus"
@@ -400,9 +385,6 @@ aaaaaaaa
                   </select>
                 </td>
                 <td>
-                  <label class="form-label" for="field_arretTechniqueComment" jhiTranslate="stockProjectApp.checkList.arretTechniqueComment"
-                    >Arret Technique Comment</label
-                  >
                   <textarea
                     class="form-control"
                     name="arretTechniqueComment"
@@ -416,11 +398,18 @@ aaaaaaaa
                 <td colspan="3" style="text-align: center">Unité d’aide à l’exploitation (UAE)</td>
               </tr>
               <tr>
-                <td>Baie au PCS (100% à chaque visite)</td>
                 <td>
-                  <label class="form-label" for="field_baiePcsTaskStatus" jhiTranslate="stockProjectApp.checkList.baiePcsTaskStatus"
-                    >Baie Pcs Task Status</label
-                  >
+                  <p class="fw-bold text-decoration-underline">Baie au PCS (100% à chaque visite)<br /></p>
+                  <ul>
+                    <li>Contrôle de la 3ème source</li>
+                    <li>Contrôle par prélèvement de la cohérence entre l’évènement <br />et l’événement et l’affichage.</li>
+                    <li>
+                      Contrôle des dérangements du réseau CDI et CMSI en débranchant<br />
+                      les câbles réseaux.
+                    </li>
+                  </ul>
+                </td>
+                <td>
                   <select
                     class="form-control"
                     name="baiePcsTaskStatus"
@@ -435,9 +424,6 @@ aaaaaaaa
                   </select>
                 </td>
                 <td>
-                  <label class="form-label" for="field_baiePCScomment" jhiTranslate="stockProjectApp.checkList.baiePCScomment"
-                    >Baie PC Scomment</label
-                  >
                   <textarea
                     class="form-control"
                     name="baiePCScomment"
@@ -448,11 +434,27 @@ aaaaaaaa
                 </td>
               </tr>
               <tr>
-                <td>Superviseur (100% à chaque visite)</td>
                 <td>
-                  <label class="form-label" for="field_superviseurTaskStatus" jhiTranslate="stockProjectApp.checkList.superviseurTaskStatus"
-                    >Superviseur Task Status</label
-                  >
+                  <p class="fw-bold text-decoration-underline">Superviseur (100% à chaque visite)<br /></p>
+                  <ul>
+                    <li>Contrôle de la fonctionnalité du système de supervision</li>
+                    <li>
+                      Vérification de la sécurisation du PC (non- accès au menu<br />
+                      démarrer ; non-accès au bureau Windows)
+                    </li>
+                    <li>Contrôle de la communication entre le superviseur et les <br />équipements supervisées</li>
+                    <li>
+                      Vérification de la qualité de communication avec les <br />centrales (taux d’erreurs de communication ; temps de cycle
+                      d’interrogation)
+                    </li>
+                    <li>Contrôle par prélèvements de la cohérence entre <br />l’événement et l’affichage</li>
+                    <li>
+                      Vérification du bon fonctionnement du superviseur <br />( passage de commandes mise en / hors service du point su
+                      chaque centrale).
+                    </li>
+                  </ul>
+                </td>
+                <td>
                   <select
                     class="form-control"
                     name="superviseurTaskStatus"
@@ -467,9 +469,6 @@ aaaaaaaa
                   </select>
                 </td>
                 <td>
-                  <label class="form-label" for="field_superviseurComment" jhiTranslate="stockProjectApp.checkList.superviseurComment"
-                    >Superviseur Comment</label
-                  >
                   <textarea
                     class="form-control"
                     name="superviseurComment"
