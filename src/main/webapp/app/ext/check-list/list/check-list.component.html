@@ -9,6 +9,7 @@
       </button>
 
       <button
+        *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER']"
         id="jh-create-entity"
         data-cy="entityCreateButton"
         class="btn btn-primary jh-create-entity create-check-list"
@@ -142,7 +143,7 @@
               <td>{{ checkList.date | formatMediumDatetime }}</td>
 
               <td class="text-end">
-                <div class="btn-group">
+                <div class="btn-group" *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_RES_MAINTENANCE']">
                   @if (checkList.validate) {
                     <a class="btn btn-danger btn-sm" (click)="validate(checkList, false)"> Not valid </a>
                   } @else {

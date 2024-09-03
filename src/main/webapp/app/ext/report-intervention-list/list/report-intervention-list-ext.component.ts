@@ -9,6 +9,7 @@ import { FilterComponent } from '../../../shared/filter';
 import { ItemCountComponent } from '../../../shared/pagination';
 import { IReportInterventionList } from '../../../entities/report-intervention-list/report-intervention-list.model';
 import { EntityResponseType } from '../../../entities/user/service/user.service';
+import HasAnyAuthorityDirective from '../../../shared/auth/has-any-authority.directive';
 @Component({
   standalone: true,
   selector: 'report-intervention-list',
@@ -24,6 +25,7 @@ import { EntityResponseType } from '../../../entities/user/service/user.service'
     FormatMediumDatePipe,
     FilterComponent,
     ItemCountComponent,
+    HasAnyAuthorityDirective,
   ],
 })
 export class ReportInterventionListExtComponent extends ReportInterventionListComponent implements OnInit {

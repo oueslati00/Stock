@@ -28,7 +28,12 @@
         </li>
         <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
         @if (account() !== null) {
-          <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <li
+            *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_RES_NEW_WORK']"
+            class="nav-item"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
             <a class="nav-link" routerLink="/product" (click)="collapseNavbar()">
               <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
               <span jhiTranslate="global.menu.entities.product">Product</span>

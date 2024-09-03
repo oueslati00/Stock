@@ -11,6 +11,7 @@ import { ICheckList } from '../../../entities/check-list/check-list.model';
 import { EntityArrayResponseType, EntityResponseType } from '../../../entities/check-list/service/check-list.service';
 import { Observable, tap } from 'rxjs';
 import { AccountService } from '../../../core/auth/account.service';
+import HasAnyAuthorityDirective from '../../../shared/auth/has-any-authority.directive';
 
 @Component({
   standalone: true,
@@ -27,6 +28,7 @@ import { AccountService } from '../../../core/auth/account.service';
     FormatMediumDatePipe,
     FilterComponent,
     ItemCountComponent,
+    HasAnyAuthorityDirective,
   ],
 })
 export class CheckListComponent extends checkList implements OnInit {

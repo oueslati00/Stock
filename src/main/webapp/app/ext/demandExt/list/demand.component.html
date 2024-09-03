@@ -9,6 +9,7 @@
       </button>
 
       <button
+        *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_BUSINESS_MANAGER', 'ROLE_USER']"
         id="jh-create-entity"
         data-cy="entityCreateButton"
         class="btn btn-primary jh-create-entity create-demand"

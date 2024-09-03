@@ -12,6 +12,7 @@ import { Status } from '../../../entities/enumerations/status.model';
 import { finalize } from 'rxjs/operators';
 import { EntityResponseType } from '../../../entities/demand/service/demand.service';
 import { Observable } from 'rxjs';
+import HasAnyAuthorityDirective from '../../../shared/auth/has-any-authority.directive';
 @Component({
   standalone: true,
   selector: 'demand',
@@ -27,6 +28,7 @@ import { Observable } from 'rxjs';
     FormatMediumDatePipe,
     FilterComponent,
     ItemCountComponent,
+    HasAnyAuthorityDirective,
   ],
 })
 export class DemandComponentExt extends DemandComponent implements OnInit {
