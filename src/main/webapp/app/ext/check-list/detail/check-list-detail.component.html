@@ -1,8 +1,8 @@
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center" style="font-family: 'Sora', sans-serif">
   <div class="col-8">
     @if (checkList()) {
       <div>
-        <h2 data-cy="checkListDetailsHeading"><span jhiTranslate="stockProjectApp.checkList.detail.title">Check List</span></h2>
+        <h2 data-cy="checkListDetailsHeading"><span>Check Liste Maintenance Préventive</span></h2>
 
         <hr />
 
@@ -45,9 +45,17 @@
               <td colspan="3" style="text-align: center">Système de détection incendie (SDI)</td>
             </tr>
             <tr>
-              <td>Tableau de détection incendie <br />100% à chaque visite :</td>
               <td>
-                <dt><span jhiTranslate="stockProjectApp.checkList.tableDetectionTaskStatus">Table Detection Task Status</span></dt>
+                <p class="fw-bold text-decoration-underline">Tableau de détection incendie 100% à chaque visite:<br /></p>
+                <ul>
+                  <li>Contrôle des tensions élémentaires et des protections</li>
+                  <li>Contrôle des connexions</li>
+                  <li>Contrôle de la 3ème source</li>
+                  <li>Contrôle des fonctions d’exploitation</li>
+                  <li>Contrôle de la charge des batteries</li>
+                </ul>
+              </td>
+              <td>
                 <dd>
                   <span [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList()!.tableDetectionTaskStatus ?? 'null')">{{
                     { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[checkList()!.tableDetectionTaskStatus ?? 'null']
@@ -55,16 +63,20 @@
                 </dd>
               </td>
               <td>
-                <dt><span jhiTranslate="stockProjectApp.checkList.tableDetectionComment">Table Detection Comment</span></dt>
                 <dd>
                   <span>{{ checkList()!.tableDetectionComment }}</span>
                 </dd>
               </td>
             </tr>
             <tr>
-              <td>Boucles (DI/DM) 100% à chaque visite:</td>
               <td>
-                <dt><span jhiTranslate="stockProjectApp.checkList.diDMTaskStatus">Di DM Task Status</span></dt>
+                <p class="fw-bold text-decoration-underline">Boucles (DI/DM) 100% à chaque visite :<br /></p>
+                <ul>
+                  <li>Contrôle de l’état des lignes des détecteurs par OCT.</li>
+                  <li>Essai sur le dérangement de chaque boucle en <br />débranchant successivement un détecteur, un fil</li>
+                </ul>
+              </td>
+              <td>
                 <dd>
                   <span [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList()!.diDMTaskStatus ?? 'null')">{{
                     { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[checkList()!.diDMTaskStatus ?? 'null']
@@ -72,18 +84,19 @@
                 </dd>
               </td>
               <td>
-                <dt><span jhiTranslate="stockProjectApp.checkList.diDMComment">Di DM Comment</span></dt>
                 <dd>
                   <span>{{ checkList()!.diDMComment }}</span>
                 </dd>
               </td>
             </tr>
             <tr>
-              <td>Détecteurs ponctuels : (50% de chaque zone à chaque visite)</td>
               <td>
-                <dt>
-                  <span jhiTranslate="stockProjectApp.checkList.detecteursPonctuelsTaskStatus">Detecteurs Ponctuels Task Status</span>
-                </dt>
+                <p class="fw-bold text-decoration-underline">Détecteurs ponctuels : (50% de chaque zone à chaque visite).<br /></p>
+                <ul>
+                  <li>Essais sur les lignes avec un générateur adapté (bombe aérosol …)</li>
+                </ul>
+              </td>
+              <td>
                 <dd>
                   <span [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList()!.detecteursPonctuelsTaskStatus ?? 'null')">{{
                     { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[
@@ -93,16 +106,20 @@
                 </dd>
               </td>
               <td>
-                <dt><span jhiTranslate="stockProjectApp.checkList.detecteursPonctuelsComment">Detecteurs Ponctuels Comment</span></dt>
                 <dd>
                   <span>{{ checkList()!.detecteursPonctuelsComment }}</span>
                 </dd>
               </td>
             </tr>
             <tr>
-              <td>éclencheurs manuels (50% à chaque visite</td>
               <td>
-                <dt><span jhiTranslate="stockProjectApp.checkList.declencheurManuelsTaskStatus">Declencheur Manuels Task Status</span></dt>
+                <p class="fw-bold text-decoration-underline">Déclencheurs manuels (50% à chaque visite):<br /></p>
+                <ul>
+                  <li>Contrôle de l’état.</li>
+                  <li>Essai fonctionnel.</li>
+                </ul>
+              </td>
+              <td>
                 <dd>
                   <span [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList()!.declencheurManuelsTaskStatus ?? 'null')">{{
                     { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[
@@ -112,7 +129,6 @@
                 </dd>
               </td>
               <td>
-                <dt><span jhiTranslate="stockProjectApp.checkList.declencheurManuelsComment">Declencheur Manuels Comment</span></dt>
                 <dd>
                   <span>{{ checkList()!.declencheurManuelsComment }}</span>
                 </dd>
@@ -122,13 +138,15 @@
               <td colspan="3" style="text-align: center">Système de mise en sécurité incendie (SMSI)</td>
             </tr>
             <tr>
-              <td>Tableau de mise en sécurité incendie (100% à chaque visite)</td>
               <td>
-                <dt>
-                  <span jhiTranslate="stockProjectApp.checkList.tableMiseSecurityIncendieTaskStatus"
-                    >Table Mise Security Incendie Task Status</span
-                  >
-                </dt>
+                <p class="fw-bold text-decoration-underline">Tableau de mise en sécurité incendie (100% à chaque visite)<br /></p>
+                <ul>
+                  <li>Contrôle des tensions élémentaires et des protections</li>
+                  <li>Contrôle des connexions.</li>
+                  <li>Contrôle de la charge des batteries.</li>
+                </ul>
+              </td>
+              <td>
                 <dd>
                   <span [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList()!.tableMiseSecurityIncendieTaskStatus ?? 'null')">{{
                     { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[
@@ -138,22 +156,22 @@
                 </dd>
               </td>
               <td>
-                <dt>
-                  <span jhiTranslate="stockProjectApp.checkList.tableMiseSecurityIncendieComment"
-                    >Table Mise Security Incendie Comment</span
-                  >
-                </dt>
                 <dd>
                   <span>{{ checkList()!.tableMiseSecurityIncendieComment }}</span>
                 </dd>
               </td>
             </tr>
             <tr>
-              <td>Alimentation de secours (100% à chaque visite)</td>
               <td>
-                <dt>
-                  <span jhiTranslate="stockProjectApp.checkList.alimentationSecoursTaskStatus">Alimentation Secours Task Status</span>
-                </dt>
+                <p class="fw-bold text-decoration-underline">Alimentation de secours (100% à chaque visite):<br /></p>
+                <ul>
+                  <li>Contrôle de la charge des batteries, nettoyage des cosses</li>
+                  <li>Mise en fonctionnement en secours (coupant la source principale).</li>
+                  <li>Contrôle des tensions</li>
+                  <li>Remise en fonctionnement marche normale.</li>
+                </ul>
+              </td>
+              <td>
                 <dd>
                   <span [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList()!.alimentationSecoursTaskStatus ?? 'null')">{{
                     { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[
@@ -163,16 +181,20 @@
                 </dd>
               </td>
               <td>
-                <dt><span jhiTranslate="stockProjectApp.checkList.alimentationSecoursComment">Alimentation Secours Comment</span></dt>
                 <dd>
                   <span>{{ checkList()!.alimentationSecoursComment }}</span>
                 </dd>
               </td>
             </tr>
             <tr>
-              <td>Equipement d’alarme : (100% à chaque visite)</td>
               <td>
-                <dt><span jhiTranslate="stockProjectApp.checkList.equipementAlarmeTaskStatus">Equipement Alarme Task Status</span></dt>
+                <p class="fw-bold text-decoration-underline">Equipement d’alarme : (100% à chaque visite):<br /></p>
+                <ul>
+                  <li>Contrôle visuellement l’état de chaque diffuseur <br />sonore pour la zone d’évacuation</li>
+                  <li>Essai de fonctionnement (Audibilité à chaque point <br />du site ou partie concernée).</li>
+                </ul>
+              </td>
+              <td>
                 <dd>
                   <span [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList()!.equipementAlarmeTaskStatus ?? 'null')">{{
                     { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[
@@ -182,16 +204,22 @@
                 </dd>
               </td>
               <td>
-                <dt><span jhiTranslate="stockProjectApp.checkList.equipementAlarmeComment">Equipement Alarme Comment</span></dt>
                 <dd>
                   <span>{{ checkList()!.equipementAlarmeComment }}</span>
                 </dd>
               </td>
             </tr>
             <tr>
-              <td>Dispositifs actionnés de sécurité (DAS)</td>
               <td>
-                <dt><span jhiTranslate="stockProjectApp.checkList.dasTaskStatus">Das Task Status</span></dt>
+                <p class="fw-bold text-decoration-underline">
+                  Dispositifs actionnés de sécurité (DAS) (100% à chaque visite, selon<br />
+                  NFS et sous responsabilité client)<br />
+                </p>
+                <ul>
+                  <li>Essai des fonctions et des DAS</li>
+                </ul>
+              </td>
+              <td>
                 <dd>
                   <span [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList()!.dasTaskStatus ?? 'null')">{{
                     { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[checkList()!.dasTaskStatus ?? 'null']
@@ -199,16 +227,25 @@
                 </dd>
               </td>
               <td>
-                <dt><span jhiTranslate="stockProjectApp.checkList.dasComment">Das Comment</span></dt>
                 <dd>
                   <span>{{ checkList()!.dasComment }}</span>
                 </dd>
               </td>
             </tr>
             <tr>
-              <td>Arrêts techniques</td>
               <td>
-                <dt><span jhiTranslate="stockProjectApp.checkList.arretTechniqueTaskStatus">Arret Technique Task Status</span></dt>
+                <p class="fw-bold text-decoration-underline">
+                  Arrêts techniques (100% à chaque visite,<br />
+                  selon NFS et sous responsabilité client)<br />
+                </p>
+                <ul>
+                  <li>
+                    Essai des commandes (climatisation, énergie, ventilation,<br />
+                    Sonorisation, etc…)
+                  </li>
+                </ul>
+              </td>
+              <td>
                 <dd>
                   <span [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList()!.arretTechniqueTaskStatus ?? 'null')">{{
                     { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[checkList()!.arretTechniqueTaskStatus ?? 'null']
@@ -216,7 +253,6 @@
                 </dd>
               </td>
               <td>
-                <dt><span jhiTranslate="stockProjectApp.checkList.arretTechniqueComment">Arret Technique Comment</span></dt>
                 <dd>
                   <span>{{ checkList()!.arretTechniqueComment }}</span>
                 </dd>
@@ -226,9 +262,18 @@
               <td colspan="3" style="text-align: center">Unité d’aide à l’exploitation (UAE)</td>
             </tr>
             <tr>
-              <td>Baie au PCS (100% à chaque visite)</td>
               <td>
-                <dt><span jhiTranslate="stockProjectApp.checkList.baiePcsTaskStatus">Baie Pcs Task Status</span></dt>
+                <p class="fw-bold text-decoration-underline">Baie au PCS (100% à chaque visite)<br /></p>
+                <ul>
+                  <li>Contrôle de la 3ème source</li>
+                  <li>Contrôle par prélèvement de la cohérence entre l’évènement <br />et l’événement et l’affichage.</li>
+                  <li>
+                    Contrôle des dérangements du réseau CDI et CMSI en débranchant<br />
+                    les câbles réseaux.
+                  </li>
+                </ul>
+              </td>
+              <td>
                 <dd>
                   <span [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList()!.baiePcsTaskStatus ?? 'null')">{{
                     { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[checkList()!.baiePcsTaskStatus ?? 'null']
@@ -236,16 +281,33 @@
                 </dd>
               </td>
               <td>
-                <dt><span jhiTranslate="stockProjectApp.checkList.baiePCScomment">Baie PC Scomment</span></dt>
                 <dd>
                   <span>{{ checkList()!.baiePCScomment }}</span>
                 </dd>
               </td>
             </tr>
             <tr>
-              <td>Superviseur (100% à chaque visite)</td>
               <td>
-                <dt><span jhiTranslate="stockProjectApp.checkList.superviseurTaskStatus">Superviseur Task Status</span></dt>
+                <p class="fw-bold text-decoration-underline">Superviseur (100% à chaque visite)<br /></p>
+                <ul>
+                  <li>Contrôle de la fonctionnalité du système de supervision</li>
+                  <li>
+                    Vérification de la sécurisation du PC (non- accès au menu<br />
+                    démarrer ; non-accès au bureau Windows)
+                  </li>
+                  <li>Contrôle de la communication entre le superviseur et les <br />équipements supervisées</li>
+                  <li>
+                    Vérification de la qualité de communication avec les <br />centrales (taux d’erreurs de communication ; temps de cycle
+                    d’interrogation)
+                  </li>
+                  <li>Contrôle par prélèvements de la cohérence entre <br />l’événement et l’affichage</li>
+                  <li>
+                    Vérification du bon fonctionnement du superviseur <br />( passage de commandes mise en / hors service du point su chaque
+                    centrale).
+                  </li>
+                </ul>
+              </td>
+              <td>
                 <dd>
                   <span [jhiTranslate]="'stockProjectApp.TaskStatus.' + (checkList()!.superviseurTaskStatus ?? 'null')">{{
                     { null: '', INSPECTED: 'INSPECTED', REPAIRED: 'REPAIRED', PRD: 'PRD' }[checkList()!.superviseurTaskStatus ?? 'null']
@@ -253,7 +315,6 @@
                 </dd>
               </td>
               <td>
-                <dt><span jhiTranslate="stockProjectApp.checkList.superviseurComment">Superviseur Comment</span></dt>
                 <dd>
                   <span>{{ checkList()!.superviseurComment }}</span>
                 </dd>
