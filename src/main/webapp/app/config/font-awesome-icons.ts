@@ -48,6 +48,8 @@ import {
 import { faFacebook, faTwitter, faInstagram, faFacebookF, faFacebookSquare } from '@fortawesome/free-brands-svg-icons';
 
 export const fontAwesomeIcons = [
+  faLocationDot,
+  faEnvelope,
   faArrowLeft,
   faAsterisk,
   faBan,
@@ -86,8 +88,7 @@ export const fontAwesomeIcons = [
   faUsers,
   faUsersCog,
   faWrench,
-  faLocationDot,
-  faEnvelope,
+
   faEnvelopesBulk,
   faEnvelopeSquare,
   faTwitter,

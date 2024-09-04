@@ -21,16 +21,3 @@ services:
       interval: 5s
       timeout: 5s
       retries: 40
-    depends_on:
-      mysql:
-        condition: service_healthy
-      elasticsearch:
-        condition: service_healthy
-  mysql:
-    extends:
-      file: ./mysql.yml
-      service: mysql
-  elasticsearch:
-    extends:
-      file: ./elasticsearch.yml
-      service: elasticsearch

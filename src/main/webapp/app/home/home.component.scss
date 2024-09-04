@@ -9,7 +9,7 @@ Main page styles
   display: inline-block;
   background-size: contain;
 
-  background: url('../../content/images/firstCoverImage.webp') no-repeat center top;
+  background: url('../../content/images/firstCoverImage.png') no-repeat center top;
 }
 
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
@@ -19,7 +19,7 @@ Main page styles
   only screen and (min-resolution: 192dpi),
   only screen and (min-resolution: 2dppx) {
   .hipster {
-    background: url('../../content/images/firstCoverImage.webp') no-repeat center top;
+    background: url('../../content/images/firstCoverImage.png') no-repeat center top;
     background-size: contain;
   }
 }
@@ -51,7 +51,7 @@ Main page styles
   height: 100%;
   object-fit: cover;
   display: inline-block;
-  background: url('../../content/images/firstCoverImage.webp') no-repeat center top;
+  background: url('../../content/images/firstCoverImage.png') no-repeat center top;
 }
 
 .cover-text {
