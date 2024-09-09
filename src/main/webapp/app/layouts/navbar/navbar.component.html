@@ -151,29 +151,7 @@
             }
           </ul>
         </li>
-        @if (languages && languages.length > 1) {
-          <li ngbDropdown class="nav-item dropdown pointer" display="dynamic">
-            <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="languagesnavBarDropdown">
-              <span>
-                <fa-icon icon="flag"></fa-icon>
-                <span jhiTranslate="global.menu.language">Langue</span>
-              </span>
-            </a>
-            <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="languagesnavBarDropdown">
-              @for (language of languages; track $index) {
-                <li>
-                  <a
-                    class="dropdown-item"
-                    [jhiActiveMenu]="language"
-                    href="javascript:void(0);"
-                    (click)="changeLanguage(language); collapseNavbar()"
-                    >{{ language | findLanguageFromKey }}</a
-                  >
-                </li>
-              }
-            </ul>
-          </li>
-        }
+
         <li
           ngbDropdown
           class="nav-item dropdown pointer"

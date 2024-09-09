@@ -1,5 +1,5 @@
-<div class="d-flex justify-content-center">
-  <div class="col-8">
+<div class="d-flex justify-content-center" style="font-family: 'Sora', sans-serif">
+  <div class="col-8 border border-dark bg-light p-5">
     <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
       <h2 id="jhi-product-heading" data-cy="ProductCreateUpdateHeading" jhiTranslate="stockProjectApp.product.home.createOrEditLabel">
         Créer ou éditer un Product
@@ -16,7 +16,7 @@
         }
 
         <div class="mb-3">
-          <label class="form-label" for="field_qrCode" jhiTranslate="stockProjectApp.product.qrCode">Qr Code</label>
+          <label class="form-label" for="field_qrCode">Reference Code</label>
           <input type="text" class="form-control" name="qrCode" id="field_qrCode" data-cy="qrCode" formControlName="qrCode" />
           @if (editForm.get('qrCode')!.invalid && (editForm.get('qrCode')!.dirty || editForm.get('qrCode')!.touched)) {
             <div>
@@ -31,7 +31,7 @@
           <label class="form-label" for="field_name" jhiTranslate="stockProjectApp.product.name">Name</label>
           <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
         </div>
-        <div>Test Web Socket here!!!</div>
+
         @for (activity of image; track $index) {
           <div>
             <img [src]="'data:image/png;base64,' + activity.image" style="max-height: 30px" alt="product" />
@@ -83,8 +83,8 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_imageUrl" jhiTranslate="stockProjectApp.product.imageUrl">Image Url</label>
-          <input type="text" class="form-control" name="imageUrl" id="field_imageUrl" data-cy="imageUrl" formControlName="imageUrl" />
+          <label class="form-label" for="field_minQT" jhiTranslate="stockProjectApp.product.minQT">Min QT</label>
+          <input type="number" class="form-control" name="minQT" id="field_minQT" data-cy="minQT" formControlName="minQT" />
         </div>
 
         <div class="mb-3">

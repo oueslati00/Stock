@@ -74,7 +74,7 @@
             </th>
             <th scope="col" jhiSortBy="qrCode">
               <div class="d-flex">
-                <span jhiTranslate="stockProjectApp.product.qrCode">Qr Code</span>
+                <span>Reference code</span>
                 @if (!currentSearch) {
                   <fa-icon class="p-1" icon="sort"></fa-icon>
                 }
@@ -90,15 +90,15 @@
             </th>
             <th scope="col" jhiSortBy="imageData">
               <div class="d-flex">
-                <span jhiTranslate="stockProjectApp.product.imageData">Image Data</span>
+                <span>Image </span>
                 @if (!currentSearch) {
                   <fa-icon class="p-1" icon="sort"></fa-icon>
                 }
               </div>
             </th>
-            <th scope="col" jhiSortBy="imageUrl">
+            <th scope="col" jhiSortBy="minQT">
               <div class="d-flex">
-                <span jhiTranslate="stockProjectApp.product.imageUrl">Image Url</span>
+                <span>Quantité minimale</span>
                 @if (!currentSearch) {
                   <fa-icon class="p-1" icon="sort"></fa-icon>
                 }
@@ -106,7 +106,7 @@
             </th>
             <th scope="col" jhiSortBy="qT">
               <div class="d-flex">
-                <span jhiTranslate="stockProjectApp.product.qT">Q T</span>
+                <span>Quantité actuelle</span>
 
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
@@ -134,7 +134,7 @@
                   <span>{{ product.imageDataContentType }}, {{ byteSize(product.imageData) }}</span>
                 }
               </td>
-              <td>{{ product.imageUrl }}</td>
+              <td>{{ product.minQT }}</td>
               <td>{{ product.qT }}</td>
               <td class="text-end">
                 <div class="btn-group">
